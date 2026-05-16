@@ -1,3 +1,5 @@
+import os
+
 """
 Configuration centralisée de l'application via Pydantic Settings.
 Charge automatiquement les variables depuis .env
@@ -8,12 +10,26 @@ from pydantic import ConfigDict
 from typing import Optional
 
 
+def _build_async_database_url(url: str) -> str:
+    """Retourne une URL de base de données SQLAlchemy async compatible."""
+    if url.startswith("postgresql://") and "+asyncpg" not in url:
+        return url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    if url.startswith("sqlite:///") and "+aiosqlite" not in url:
+        return url.replace("sqlite:///", "sqlite+aiosqlite:///")
+    return url
+
+
 class Settings(BaseSettings):
     # ============================================
     # BASE DE DONNÉES
     # ============================================
-    DATABASE_URL: str = "sqlite+aiosqlite:///./cv_vision_ai.db"
-    SYNC_DATABASE_URL: str = "sqlite:///./cv_vision_ai.db"
+    DATABASE_URL: str = _build_async_database_url(
+        os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./cv_vision_ai.db")
+    )
+    SYNC_DATABASE_URL: str = os.getenv(
+        "SYNC_DATABASE_URL",
+        os.getenv("DATABASE_URL", "sqlite:///./cv_vision_ai.db"),
+    )
     
     # ============================================
     # SÉCURITÉ JWT
