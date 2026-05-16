@@ -2,12 +2,34 @@ services:
   - type: web
     name: cv-vision-ai-backend
     env: python
+    runtime: python-3.11
     buildCommand: "cd backend && pip install -r requirements.txt"
-    startCommand: "cd backend && uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"
+    startCommand: "cd backend && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.0
+        value: 3.11
       - key: DATABASE_URL
-        value: postgresql://user:pass@localhost/db
+        fromDatabase:
+          name: cv_vision_db
+          property: connectionString
+      - key: SYNC_DATABASE_URL
+        fromDatabase:
+          name: cv_vision_db
+          property: connectionString
       - key: SECRET_KEY
         generateValue: true
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: "7"
+
+databases:
+  - name: cv_vision_db
+    plan: free
+    region: eu
