@@ -1,0 +1,39 @@
+{
+  "skills": [
+    "python", "javascript", "typescript", "java", "c++", "c#", "go", "rust", "ruby", "php",
+    "swift", "kotlin", "dart", "scala", "r", "matlab", "perl", "shell", "bash", "powershell",
+    "react", "vue", "angular", "svelte", "next.js", "nuxt.js", "gatsby",
+    "node.js", "django", "fastapi", "flask", "spring", "laravel", "express", "nestjs",
+    "html", "css", "sass", "less", "tailwind css", "bootstrap", "material ui", "chakra ui",
+    "sql", "postgresql", "mysql", "mongodb", "redis", "elasticsearch", "cassandra", "dynamodb",
+    "sqlite", "mariadb", "oracle", "firebase", "supabase", "prisma", "sqlalchemy", "mongoose",
+    "docker", "kubernetes", "aws", "azure", "gcp", "terraform", "ansible", "jenkins", "github actions",
+    "gitlab ci", "circleci", "travis ci", "prometheus", "grafana", "elk stack", "nginx", "apache",
+    "git", "github", "gitlab", "bitbucket", "svn", "mercurial",
+    "machine learning", "deep learning", "nlp", "computer vision", "data science",
+    "pandas", "numpy", "scikit-learn", "tensorflow", "pytorch", "keras", "opencv",
+    "matplotlib", "seaborn", "plotly", "tableau", "power bi", "jupyter", "colab",
+    "agile", "scrum", "kanban", "jira", "confluence", "trello", "notion", "slack",
+    "rest api", "graphql", "websocket", "grpc", "soap", "microservices", "serverless",
+    "linux", "ubuntu", "centos", "debian", "windows server", "macos",
+    "excel", "powerpoint", "word", "google sheets", "google docs",
+    "photoshop", "figma", "sketch", "adobe xd", "illustrator", "invision",
+    "communication", "leadership", "teamwork", "problem solving", "critical thinking",
+    "project management", "time management", "adaptability", "creativity", "empathy",
+    "negotiation", "conflict resolution", "mentoring", "presentation skills",
+    "seo", "sem", "google analytics", "google ads", "facebook ads", "content marketing",
+    "copywriting", "social media", "email marketing", "growth hacking",
+    "blockchain", "solidity", "web3", "smart contracts", "ethereum", "bitcoin",
+    "iot", "embedded systems", "arduino", "raspberry pi", "fpga",
+    "cybersecurity", "penetration testing", "ethical hacking", "cryptography", "owasp"
+  ],
+  "categories": {
+    "programming": ["python", "javascript", "typescript", "java", "c++", "c#", "go", "rust"],
+    "frontend": ["react", "vue", "angular", "html", "css", "tailwind css"],
+    "backend": ["node.js", "django", "fastapi", "flask", "spring", "express"],
+    "database": ["sql", "postgresql", "mysql", "mongodb", "redis"],
+    "devops": ["docker", "kubernetes", "aws", "git", "ci/cd"],
+    "data": ["machine learning", "pandas", "numpy", "tensorflow", "pytorch"],
+    "soft_skills": ["communication", "leadership", "teamwork", "agile"]
+  }
+}

@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+*.egg-info/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite3
+
+# Uploads
+uploads/
+*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Frontend
+node_modules/
+frontend/node_modules/
+dist/
+build/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Caches
+.mypy_cache/
+.pyre/
+
+# ML Models (trop lourds)
+*.pkl
+*.joblib
+*.bin
