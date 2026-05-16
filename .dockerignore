@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Frontend
+frontend/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+docs/
+
+# Tests (keep requirements-dev.txt but not test artifacts)
+.coverage
+htmlcov/
+
+# Database files (use PostgreSQL in production)
+*.db
+*.sqlite3
+test_db.db
+
+# Uploads (can be mounted as volume)
+# uploads/
+
+# Infrastructure
+infrastructure/
