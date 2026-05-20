@@ -23,15 +23,15 @@ pwd_context = CryptContext(
 
 
 def _truncate_password_to_72_bytes(password: str) -> str:
-    """
-    Tronque une chaîne UTF-8 à 72 octets (limite de bcrypt).
-    Retourne une chaîne décodée en ignorant l'octet final tronqué si nécessaire.
-    """
+    """Tronque le mot de passe à 72 bytes (limite de bcrypt)."""
     if password is None:
         return password
-    # encoder puis tronquer en octets, décoder en ignorant les caractères incomplets
-    b = password.encode("utf-8")[:72]
-    return b.decode("utf-8", errors="ignore")
+
+    password_bytes = password.encode("utf-8")
+    if len(password_bytes) > 72:
+        return password_bytes[:72].decode("utf-8", errors="ignore")
+    return password
+
 
 # Schéma OAuth2 pour récupérer le token depuis le header Authorization
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")

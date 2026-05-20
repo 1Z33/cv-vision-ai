@@ -22,15 +22,65 @@ class CVAnalyzerEngine:
         self.section_patterns = self._get_section_patterns()
     
     def _load_skills_corpus(self) -> List[str]:
-        """Charge le corpus de compétences techniques."""
-        corpus_path = Path(__file__).parent.parent / "ml" / "data" / "skills_corpus.json"
-        
-        if corpus_path.exists():
-            with open(corpus_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                return data.get("skills", [])
-        
-        # Corpus par défaut si fichier non trouvé
+        """Charge le corpus de compétences.
+
+        Supporte plusieurs formats pour éviter de casser l'app lors d'un changement de génération de corpus:
+        - Format historique attendu: {"skills": [...]} (clé "skills")
+        - Format flat: [...]
+        - Format structuré: {"_metadata":..., "domain": {"category": ["skill", ...], ...}, ...}
+        """
+
+        data_dir = Path(__file__).parent.parent / "ml" / "data"
+
+        # 1) Priorité: skills_corpus.json (actuel)
+        candidates = [
+            data_dir / "skills_corpus.json",
+            data_dir / "skills_corpus_flat.json",
+            data_dir / "skills_corpus_structured.json",
+        ]
+
+        for corpus_path in candidates:
+            if not corpus_path.exists():
+                continue
+
+            try:
+                with open(corpus_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception as e:
+                logger.warning(f"Impossible de charger le corpus depuis {corpus_path}: {e}")
+                continue
+
+            # Format {"skills": [...]} (ancien)
+            if isinstance(data, dict) and "skills" in data:
+                skills = data.get("skills", [])
+                return sorted({s.lower().strip() for s in skills if isinstance(s, str) and s.strip()})
+
+            # Format flat: [...]
+            if isinstance(data, list):
+                return sorted({s.lower().strip() for s in data if isinstance(s, str) and s.strip()})
+
+            # Format structuré: flatten dynamique
+            if isinstance(data, dict):
+                skills_set = set()
+
+                def _extract(obj: Any):
+                    if isinstance(obj, list):
+                        for item in obj:
+                            if isinstance(item, str) and item.strip():
+                                skills_set.add(item.lower().strip())
+                            else:
+                                _extract(item)
+                    elif isinstance(obj, dict):
+                        for k, v in obj.items():
+                            if isinstance(k, str) and k.startswith("_"):
+                                continue
+                            _extract(v)
+
+                _extract(data)
+                if skills_set:
+                    return sorted(skills_set)
+
+        # Corpus par défaut si fichier non trouvé / non valide
         return [
             "python", "javascript", "typescript", "java", "c++", "c#", "go", "rust",
             "react", "vue", "angular", "node.js", "django", "fastapi", "flask",
@@ -46,7 +96,7 @@ class CVAnalyzerEngine:
             "excel", "powerpoint", "word", "google sheets",
             "photoshop", "figma", "sketch", "adobe xd",
             "communication", "leadership", "teamwork", "problem solving",
-            "project management", "time management", "critical thinking"
+            "project management", "time management", "critical thinking",
         ]
     
     def _get_section_patterns(self) -> Dict[str, List[str]]:

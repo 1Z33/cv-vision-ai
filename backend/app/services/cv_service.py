@@ -9,6 +9,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from fastapi import UploadFile
 
+# NOTE: imports kept for backward compatibility
+
+
 from app.models.cv import CV
 from app.core.config import settings
 from app.utils.pdf_parser import PDFParser
@@ -51,28 +54,44 @@ class CVService:
             parsed = self.parser.parse(str(file_path))
             extracted_text = parsed["text"]
             page_count = parsed["page_count"]
+            extraction_source = parsed.get("source", "native")
+            ocr_triggered = parsed.get("ocr_triggered", False)
+            native_text_length = len(parsed.get("native_text", ""))
+            ocr_text_length = len(parsed.get("ocr_text", ""))
         except Exception as e:
             logger.error(f"Erreur extraction PDF: {e}")
             extracted_text = ""
             page_count = 0
+            extraction_source = "error"
+            ocr_triggered = False
+            native_text_length = 0
+            ocr_text_length = 0
         
         # Créer l'entrée en base
         file_size_kb = len(content) // 1024
-        
+
         cv = CV(
             user_id=user_id,
             filename=file.filename,
             file_path=str(file_path),
             extracted_text=extracted_text,
             file_size_kb=file_size_kb,
-            page_count=page_count
+            page_count=page_count,
         )
-        
+
         self.db.add(cv)
         await self.db.commit()
         await self.db.refresh(cv)
-        
-        logger.info(f"CV sauvegardé: {cv.filename} pour user {user_id}")
+
+        logger.info(
+            "CV sauvegardé: %s pour user %s (source=%s ocr_triggered=%s native_len=%s ocr_len=%s)",
+            cv.filename,
+            user_id,
+            extraction_source,
+            ocr_triggered,
+            native_text_length,
+            ocr_text_length,
+        )
         return cv
     
     async def get_user_cvs(self, user_id: uuid.UUID) -> list[CV]:

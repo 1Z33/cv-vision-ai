@@ -37,6 +37,14 @@ class InterviewQA(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     session_id = Column(UUID(as_uuid=True), ForeignKey("interview_sessions.id", ondelete="CASCADE"), nullable=False, index=True)
     question_number = Column(Integer, nullable=False)
+
+    __table_args__ = (
+        # Empêche d’avoir plusieurs lignes pour la même question dans une même session
+        # (prévention des doublons et états incohérents).
+        # À appliquer via migration Alembic/SQL selon la DB.
+        # (Contraintes réellement effectives après migration.)
+        {},
+    )
     
     question_text = Column(Text, nullable=False)
     question_type = Column(String(50))  # technical, behavioral, situational

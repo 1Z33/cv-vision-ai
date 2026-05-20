@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 import { 
   FileText, MessageSquare, Target, TrendingUp, 
   Award, Clock, ChevronRight 
 } from 'lucide-react'
+
 import Card from '../components/ui/Card'
 import ScoreChart from '../components/charts/ScoreChart'
 import ProgressChart from '../components/charts/ProgressChart'
@@ -29,11 +30,57 @@ export default function DashboardPage() {
     totalMatches: 8,
   }
 
-  const recentCVs = [
-    { id: 1, name: 'CV_Dev_Backend.pdf', score: 82, date: '2024-01-15' },
-    { id: 2, name: 'CV_FullStack.pdf', score: 75, date: '2024-01-10' },
-    { id: 3, name: 'CV_Data_Science.pdf', score: 68, date: '2024-01-05' },
-  ]
+  const [recentCVs, setRecentCVs] = useState([])
+  const [loadingRecentCVs, setLoadingRecentCVs] = useState(true)
+
+
+  useEffect(() => {
+    let isMounted = true
+
+    async function loadRecentCVs() {
+      try {
+        setLoadingRecentCVs(true)
+        const token = localStorage.getItem('access_token')
+
+        const res = await fetch('/api/v1/cvs', {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : '',
+          },
+        })
+
+        if (!res.ok) throw new Error(`Failed to fetch recent CVs: ${res.status}`)
+        const data = await res.json()
+
+        const items = Array.isArray(data?.items) ? data.items : []
+
+        // Prend les 5 derniers CV (supposition: l'API renvoie déjà triés)
+        const last = items.slice(-5).reverse()
+
+        // Mapper la réponse API vers la structure attendue par l'UI
+        const mapped = last.map((cv) => ({
+          id: cv.id,
+          name: cv.filename || cv.name || 'CV',
+          score: cv.score ?? cv.overall_score ?? cv.avg_score ?? 0,
+          date: cv.created_at || cv.uploaded_at || cv.date || '',
+        }))
+
+        if (isMounted) setRecentCVs(mapped)
+      } catch (e) {
+        if (isMounted) setRecentCVs([])
+      } finally {
+        if (isMounted) setLoadingRecentCVs(false)
+      }
+    }
+
+    loadRecentCVs()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+
+
 
   const progressData = [
     { date: 'Jan', score: 65 },

@@ -93,11 +93,18 @@ class InterviewService:
         
         # Trouver la question actuelle (la première non répondue)
         result = await self.db.execute(
-            select(InterviewQA).where(
-                and_(InterviewQA.session_id == session_id, InterviewQA.user_answer == None)
-            ).order_by(InterviewQA.question_number)
+            select(InterviewQA)
+            .where(
+                and_(
+                    InterviewQA.session_id == session_id,
+                    InterviewQA.user_answer.is_(None),
+                )
+            )
+            .order_by(InterviewQA.question_number)
+            .limit(1)
         )
         current_qa = result.scalar_one_or_none()
+
         
         if not current_qa:
             raise ValueError("Plus de questions disponibles")
@@ -123,11 +130,19 @@ class InterviewService:
         
         # Vérifier s'il reste des questions
         result = await self.db.execute(
-            select(InterviewQA).where(
-                and_(InterviewQA.session_id == session_id, InterviewQA.user_answer == None)
-            ).order_by(InterviewQA.question_number)
+            select(InterviewQA)
+            .where(
+                and_(
+                    InterviewQA.session_id == session_id,
+                    InterviewQA.user_answer.is_(None),
+                    InterviewQA.question_number > current_qa.question_number,
+                )
+            )
+            .order_by(InterviewQA.question_number)
+            .limit(1)
         )
         next_qa = result.scalar_one_or_none()
+
         
         response = {
             "question_number": current_qa.question_number,

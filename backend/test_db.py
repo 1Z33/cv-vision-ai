@@ -6,8 +6,24 @@ import asyncio
 import sys
 import os
 
+import pytest
+
+from app.core.config import settings
+
+# Active asyncio for tests in this module
+pytestmark = pytest.mark.asyncio
+
+
+
+@pytest.fixture
+def app_settings():
+    """Fixture qui fournit l'objet settings de l'application"""
+    return settings
+
+
 # Ajoute le dossier parent au path pour importer app
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 
 async def test_config_loading():
     """Test 1 : La config se charge-t-elle ?"""
@@ -28,7 +44,7 @@ async def test_config_loading():
         traceback.print_exc()
         return None
 
-async def test_engine_creation(settings):
+async def test_engine_creation(app_settings):
     """Test 2 : L'engine SQLAlchemy se crée-t-il ?"""
     print("\n" + "=" * 50)
     print("TEST 2 : Création de l'engine")
@@ -39,8 +55,8 @@ async def test_engine_creation(settings):
         from sqlalchemy import text
         
         engine = create_async_engine(
-            settings.DATABASE_URL,
-            echo=settings.DEBUG
+            app_settings.DATABASE_URL,
+            echo=app_settings.DEBUG
         )
         print("✅ Engine créé")
         
@@ -60,7 +76,7 @@ async def test_engine_creation(settings):
         traceback.print_exc()
         return False
 
-async def test_session_factory(settings):
+async def test_session_factory(app_settings):
     """Test 3 : La session factory fonctionne-t-elle ?"""
     print("\n" + "=" * 50)
     print("TEST 3 : Session factory")
@@ -89,7 +105,7 @@ async def test_session_factory(settings):
         traceback.print_exc()
         return False
 
-async def test_models_creation(settings):
+async def test_models_creation(app_settings):
     """Test 4 : Création des tables (Alembic/SQLAlchemy)"""
     print("\n" + "=" * 50)
     print("TEST 4 : Création des tables")
@@ -170,7 +186,7 @@ if __name__ == "__main__":
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-def test_connection(settings):
+def test_connection(app_settings):
     print("=" * 60)
     print("TEST CONNEXION POSTGRESQL - TABLES CVISION AI")
     print("=" * 60)

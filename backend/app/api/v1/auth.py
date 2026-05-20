@@ -51,8 +51,11 @@ async def login(
     return tokens
 
 
+from uuid import UUID
+
 @router.post("/refresh", response_model=Token)
 async def refresh_token(refresh_data: TokenRefresh, db: AsyncSession = Depends(get_db)):
+
     """
     Rafraîchit les tokens d'accès avec un refresh token valide.
     """
@@ -62,9 +65,16 @@ async def refresh_token(refresh_data: TokenRefresh, db: AsyncSession = Depends(g
     if not payload or payload.get("type") != "refresh":
         raise HTTPException(status_code=401, detail="Refresh token invalide")
     
-    user_id = payload.get("sub")
+    user_id_str = payload.get("sub")
+    try:
+        user_id = UUID(str(user_id_str))
+    except (ValueError, TypeError):
+        raise HTTPException(status_code=401, detail="Invalid refresh token")
+
+
     auth_service = AuthService(db)
     user = await auth_service.get_user_by_id(user_id)
+
     
     if not user or not user.is_active:
         raise HTTPException(status_code=401, detail="Utilisateur non trouvé ou inactif")
