@@ -602,13 +602,23 @@ class SalaryPredictor:
     def predict(self, job_slug: str, difficulty: str = "medium", experience_years: int = 0, location: str = "kinshasa") -> dict:
         job_key = job_slug.lower()
 
-        # map base selon préfixe si le job provient d'un slug étendu.
+        # Déterminer si le job est connu et choisir la base salariale correspondante.
+        base_slugs = set(self._base_by_job.keys())
+        is_known = (
+            job_key in base_slugs
+            or job_key.startswith(tuple(f"{k}_" for k in base_slugs))
+            or any(job_key == j for j in self.list_jobs())
+        )
+
         base = 400
         for k, v in self._base_by_job.items():
             if job_key == k or job_key.startswith(f"{k}_"):
                 base = v
                 break
-        
+
+        if not is_known:
+            base = 450
+
         diff_mult = self._difficulty_mult.get(difficulty, 1.0)
         loc_mult = self._location_mult.get(location, 0.8)
         exp_mult = 1.0 + min(experience_years, 20) * 0.03
@@ -624,16 +634,6 @@ class SalaryPredictor:
         # attendue par les tests.
         # The tests expect a full, schema-compatible response even for unknown jobs.
         # We therefore always return the prediction keys and compute a fallback salary.
-        base_slugs = set(self._base_by_job.keys())
-        is_known = (
-            job_slug.lower() in base_slugs
-            or job_slug.lower().startswith(tuple(f"{k}_" for k in base_slugs))
-            or any(job_slug.lower() == j for j in self.list_jobs())
-        )
-
-        # If unknown, keep the same heuristic machinery but also return an explicit error.
-        if not is_known:
-            base = 450
 
         result = {
             "job_slug": job_slug,

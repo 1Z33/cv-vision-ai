@@ -345,6 +345,7 @@ Réponds en JSON:
                 "question_text": question_text,
                 "question_type": "technical",
                 "expected_keywords": [primary_skill, "pratique", job],
+                "expected_keywords": [primary_skill, "pratique", job_title],
                 "source": "fallback",
                 "fallback_reason": "rate_limit"
             }

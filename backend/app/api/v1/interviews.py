@@ -245,17 +245,38 @@ async def start_vocal_interview(
     from app.models.interview import InterviewQA
     import uuid
 
-    qa = InterviewQA(
-        id=uuid.uuid4(),
-        session_id=UUID(session_id),
-
-        question_number=1,
-        question_text=question_data["question_text"],
-        question_type=question_data.get("question_type", "behavioral"),
-        expected_keywords=question_data.get("expected_keywords", []),
+    # Évite la création multiple de QA lors d'appels répétés de /vocal-start
+    session_uuid = UUID(session_id)
+    existing_qa = await db.execute(
+        __import__("sqlalchemy", fromlist=["select"]).select(InterviewQA).where(
+            InterviewQA.session_id == session_uuid,
+            InterviewQA.question_number == 1,
+        )
     )
-    db.add(qa)
-    await db.commit()
+    existing_qa_obj = existing_qa.scalars().first()
+
+    if existing_qa_obj:
+        # Réutilise la question déjà stockée (et on ne la duplique pas)
+        # Si elle n'a pas de texte (cas rare), on la complète.
+        if not existing_qa_obj.question_text:
+            existing_qa_obj.question_text = question_data["question_text"]
+        if not existing_qa_obj.question_type:
+            existing_qa_obj.question_type = question_data.get("question_type", "behavioral")
+        if not existing_qa_obj.expected_keywords:
+            existing_qa_obj.expected_keywords = question_data.get("expected_keywords", [])
+        await db.commit()
+    else:
+        qa = InterviewQA(
+            id=uuid.uuid4(),
+            session_id=session_uuid,
+            question_number=1,
+            question_text=question_data["question_text"],
+            question_type=question_data.get("question_type", "behavioral"),
+            expected_keywords=question_data.get("expected_keywords", []),
+        )
+        db.add(qa)
+        await db.commit()
+
 
     # Générer l'audio de la question (TTS)
     from app.services.vocal_service import VocalService
@@ -388,7 +409,13 @@ async def process_vocal_answer(
     from datetime import datetime
     import uuid
 
-    session = await db.get(InterviewSessionModel, session_id)
+    from uuid import UUID
+    try:
+        session_uuid = UUID(str(session_id))
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid session ID format")
+
+    session = await db.get(InterviewSessionModel, session_uuid)
     if not session:
         raise HTTPException(status_code=404, detail="Session non trouvée")
 
@@ -399,13 +426,16 @@ async def process_vocal_answer(
 
     # Récupère la question correspondant exactement au question_number reçu,
     # uniquement si elle n'a pas encore été répondue.
+    # Cherche la première question non encore répondue pour ce numéro.
     result = await db.execute(
         __import__("sqlalchemy", fromlist=["select"]).select(InterviewQA)
-        .where(InterviewQA.session_id == session_id)
+        .where(InterviewQA.session_id == session_uuid)
         .where(InterviewQA.question_number == question_number)
         .where(InterviewQA.user_answer.is_(None))
+        .order_by(InterviewQA.answered_at.asc().nullsfirst(), InterviewQA.id.asc())
     )
     current_qa = result.scalars().first()
+
 
     if not current_qa:
         # Soit aucune QA pour ce numéro, soit déjà répondu.
@@ -445,17 +475,23 @@ async def process_vocal_answer(
         evaluation = {"score": 50, "feedback": "Réponse enregistrée."}
 
 
-    current_qa.user_answer = answer_text
+    # Sécurise les valeurs avant commit (évite certains types inattendus)
+    current_qa.user_answer = answer_text if isinstance(answer_text, str) else str(answer_text)
 
     current_qa.answer_score = evaluation.get("score", 50)
-    current_qa.feedback_text = evaluation.get("feedback", "")
+    current_qa.answer_score = int(current_qa.answer_score) if current_qa.answer_score is not None else None
 
+    current_qa.feedback_text = evaluation.get("feedback", "")
+    current_qa.feedback_text = current_qa.feedback_text if isinstance(current_qa.feedback_text, str) else str(current_qa.feedback_text)
+
+    # answered_at: datetime attendu (nullable)
     current_qa.answered_at = datetime.utcnow()
     await db.commit()
 
+
     answered_result = await db.execute(
         __import__("sqlalchemy", fromlist=["select"]).select(func.count(InterviewQA.id))
-        .where(InterviewQA.session_id == session_id)
+        .where(InterviewQA.session_id == session_uuid)
         .where(InterviewQA.user_answer.isnot(None))
     )
     answered_count = answered_result.scalar()
@@ -463,11 +499,19 @@ async def process_vocal_answer(
     if answered_count >= 5:
         scores_result = await db.execute(
             __import__("sqlalchemy", fromlist=["select"]).select(InterviewQA.answer_score)
-            .where(InterviewQA.session_id == session_id)
+            .where(InterviewQA.session_id == session_uuid)
             .where(InterviewQA.answer_score.isnot(None))
         )
         scores = [s for s in scores_result.scalars().all() if s is not None]
-        total_score = int(sum(scores) / len(scores)) if scores else 0
+        # Corrige le cas où answer_score en base peut être une chaîne (ex: '50')
+        numeric_scores: list[int] = []
+        for s in scores:
+            try:
+                numeric_scores.append(int(s))
+            except Exception:
+                logger.warning(f"answer_score non numérique ignoré: {s!r}")
+        total_score = int(sum(numeric_scores) / len(numeric_scores)) if numeric_scores else 0
+
 
         session.total_score = total_score
         session.status = "completed"
@@ -521,9 +565,8 @@ async def process_vocal_answer(
     next_question_audio_url = await vocal_service.text_to_speech(next_q["question_text"]) if next_q.get("question_text") else None
 
     new_qa = InterviewQA(
-
-        id=str(uuid.uuid4()).replace("-", ""),
-        session_id=session_id,
+        id=uuid.uuid4(),
+        session_id=session_uuid,
         question_number=next_number,
         question_text=next_q["question_text"],
         question_type=next_q.get("question_type", "behavioral"),
@@ -532,16 +575,19 @@ async def process_vocal_answer(
     db.add(new_qa)
     await db.commit()
 
+
     return {
         "is_complete": False,
         "answer_transcription": answer_text,
         "score": evaluation.get("score", 0) if evaluation else 0,
         "feedback_text": evaluation.get("feedback", ""),
         "feedback_audio_url": feedback_audio_url,
+        "next_question_number": next_number,
         "next_question_text": next_q["question_text"],
         "next_question_audio_url": next_question_audio_url,
         "evaluation": evaluation,
         "total_score": None,
     }
+
 
 
