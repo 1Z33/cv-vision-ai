@@ -39,8 +39,15 @@ class AnalysisResponse(BaseModel):
     sections_detected: dict
     word_count: int
     contact_info_found: bool
+
+    # Champs additionnels (C4/C7)
+    used_gemini: Optional[bool] = None
+    estimated_seniority: Optional[str] = None
+    experience_years: Optional[int] = None
+    job_match: Optional[dict] = None
+
     created_at: datetime
-    
+
     class Config:
         from_attributes = True
 

@@ -2,6 +2,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
 import { Brain, Menu, X, LogOut, User, FileText, MessageSquare, Briefcase, LayoutDashboard } from 'lucide-react'
 import { useState } from 'react'
+import { GeminiStatus } from '../GeminiStatus'
+
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuthStore()
@@ -46,6 +48,8 @@ export default function Navbar() {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center gap-3">
+            <GeminiStatus />
+
             {isAuthenticated ? (
               <div className="flex items-center gap-3">
                 <span className="text-sm text-dark-400 flex items-center gap-2">

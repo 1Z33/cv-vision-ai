@@ -15,6 +15,10 @@ import InterviewPage from './pages/InterviewPage'
 import InterviewFeedbackPage from './pages/InterviewFeedbackPage'
 import JobsPage from './pages/JobsPage'
 import MatchResultPage from './pages/MatchResultPage'
+import GapBridgePage from './pages/GapBridgePage'
+import LiveInterviewPage from './pages/LiveInterviewPage'
+
+
 
 function App() {
   const initializeAuth = useAuthStore((state) => state.initializeAuth)
@@ -38,11 +42,17 @@ function App() {
           <Route path="/interview-feedback/:sessionId" element={<InterviewFeedbackPage />} />
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/match/:cvId" element={<MatchResultPage />} />
+
+          <Route path="/gap-bridge/:cvId" element={<GapBridgePage />} />
+          <Route path="/interview-live/:sessionId" element={<LiveInterviewPage />} />
         </Routes>
+
       </main>
       <Footer />
     </div>
   )
 }
 
+
 export default App
+

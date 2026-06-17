@@ -6,6 +6,8 @@ import {
 } from 'lucide-react'
 import Card from '../components/ui/Card'
 import ScoreChart from '../components/charts/ScoreChart'
+import { CVGeminiAnalysis } from '../components/CV/CVGeminiAnalysis'
+
 
 export default function CVAnalysisPage() {
   const { cvId } = useParams()
@@ -84,8 +86,9 @@ export default function CVAnalysisPage() {
       </div>
 
       {/* Score Overview */}
-      <div className="grid lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid lg:grid-cols-2 gap-6 mb-8">
         <Card className="lg:col-span-1">
+
           <h3 className="text-lg font-semibold mb-4 text-center">Score Global</h3>
           <div className="text-center py-4">
             <div className={`text-6xl font-bold ${getScoreColor(analysis.overall_score)}`}>
@@ -100,7 +103,7 @@ export default function CVAnalysisPage() {
           </div>
         </Card>
 
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-1">
           <h3 className="text-lg font-semibold mb-4">Répartition des scores</h3>
           <ScoreChart 
             structure={analysis.structure_score}
@@ -109,7 +112,12 @@ export default function CVAnalysisPage() {
             overall={analysis.overall_score}
           />
         </Card>
+
+        <div className="lg:col-span-1">
+          <CVGeminiAnalysis cvId={cvId} />
+        </div>
       </div>
+
 
       {/* Detailed Scores */}
       <div className="grid md:grid-cols-3 gap-4 mb-8">

@@ -33,6 +33,9 @@ class Analysis(Base):
     sections_detected = Column(JSON, default=dict)
     word_count = Column(Integer)
     contact_info_found = Column(Boolean, default=False)
+    used_gemini = Column(Boolean, default=False)
+    model_compliance_score = Column(Integer, nullable=True)
+    model_compliance_breakdown = Column(JSON, nullable=True)
     
     created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     

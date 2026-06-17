@@ -1,0 +1,90 @@
+{
+  "programming": {
+    "Python": [
+      {
+        "title": "Python for Beginners",
+        "url": "https://docs.python.org/3/tutorial/",
+        "type": "documentation",
+        "duration_hours": 10,
+        "free": true
+      },
+      {
+        "title": "Automate the Boring Stuff",
+        "url": "https://automatetheboringstuff.com/",
+        "type": "book",
+        "duration_hours": 20,
+        "free": true
+      }
+    ],
+    "JavaScript": [
+      {
+        "title": "JavaScript.info",
+        "url": "https://javascript.info/",
+        "type": "documentation",
+        "duration_hours": 15,
+        "free": true
+      }
+    ]
+  },
+  "web": {
+    "React": [
+      {
+        "title": "React Documentation",
+        "url": "https://react.dev/",
+        "type": "documentation",
+        "duration_hours": 12,
+        "free": true
+      }
+    ],
+    "Docker": [
+      {
+        "title": "Docker Getting Started",
+        "url": "https://docs.docker.com/get-started/",
+        "type": "documentation",
+        "duration_hours": 8,
+        "free": true
+      }
+    ]
+  },
+  "data": {
+    "SQL": [
+      {
+        "title": "SQLZoo",
+        "url": "https://sqlzoo.net/",
+        "type": "interactive",
+        "duration_hours": 10,
+        "free": true
+      }
+    ],
+    "Machine Learning": [
+      {
+        "title": "Fast.ai Course",
+        "url": "https://course.fast.ai/",
+        "type": "course",
+        "duration_hours": 40,
+        "free": true
+      }
+    ]
+  },
+  "soft_skills": {
+    "Gestion de projet": [
+      {
+        "title": "Scrum Guide",
+        "url": "https://scrumguides.org/",
+        "type": "documentation",
+        "duration_hours": 5,
+        "free": true
+      }
+    ],
+    "Communication": [
+      {
+        "title": "Coursera Communication Skills",
+        "url": "https://www.coursera.org/learn/communication-skills",
+        "type": "course",
+        "duration_hours": 20,
+        "free": false
+      }
+    ]
+  }
+}
+

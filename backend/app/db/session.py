@@ -11,10 +11,20 @@ from app.core.config import settings
 async_engine = create_async_engine(
     settings.DATABASE_URL,
     echo=settings.DEBUG,
-    future=True
+    future=True,
+
+    # Pool tuning
+    pool_size=20,
+    max_overflow=30,
+    pool_pre_ping=True,
+    pool_recycle=1800,
+    pool_timeout=15,
+    pool_use_lifo=True,
 )
 
 # Factory de sessions async
+
+
 AsyncSessionLocal = async_sessionmaker(
     async_engine,
     class_=AsyncSession,

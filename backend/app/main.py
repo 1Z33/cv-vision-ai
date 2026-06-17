@@ -6,7 +6,9 @@ import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
+
 
 from app.core.config import settings
 from app.core.logging import logger
@@ -40,19 +42,38 @@ app = FastAPI(
 # MIDDLEWARES
 # ============================================
 
-# CORS - Autoriser le frontend
+# CORS - Configuration pour développement et production
+# En développement: localhost:5173 et localhost:3000
+# En production: remplacer par le domaine réel du frontend
+allowed_origins = [
+    "http://localhost:5173",  # Vite dev
+    "http://localhost:3000",  # React dev
+    # "https://your-frontend-domain.com",  # Uncomment for production
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],  # Vite / React dev
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# GZip - Compression des réponses (avant les routes)
+app.add_middleware(GZipMiddleware, minimum_size=1000)  # Compresse si réponse > 1KB
+
 # ============================================
 # ROUTES
 # ============================================
 app.include_router(api_router)
+
+# Servir les fichiers audio générés
+from fastapi.staticfiles import StaticFiles
+
+uploads_audio_dir = os.path.join(settings.UPLOAD_DIR, "audio")
+os.makedirs(uploads_audio_dir, exist_ok=True)
+app.mount("/uploads/audio", StaticFiles(directory=uploads_audio_dir), name="audio")
+
 
 # ============================================
 # GESTION DES EXCEPTIONS

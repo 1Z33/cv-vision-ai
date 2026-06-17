@@ -2,7 +2,7 @@
 Service centralisé de calcul des scores.
 """
 
-from typing import Dict, List
+from typing import Any, Dict, List
 
 
 class ScoringService:
@@ -45,7 +45,7 @@ class ScoringService:
         return int(max(0, min(100, total)))
     
     @staticmethod
-    def calculate_progression(history: List[int]) -> Dict[str, any]:
+    def calculate_progression(history: List[int]) -> Dict[str, Any]:
         """
         Calcule les statistiques de progression.
         

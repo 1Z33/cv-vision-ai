@@ -28,10 +28,13 @@ def test_analyze_cv_with_content():
     Master Informatique - Université de Paris (2019)
     """
     
-    result = engine.analyze(cv_text)
-    
+    # analyze() est async => appeler via asyncio
+    import asyncio
+    result = asyncio.run(engine.analyze(cv_text))
+
     assert result["overall_score"] > 0
     assert result["overall_score"] <= 100
+
     assert "python" in result["detected_skills"]
     assert result["contact_info_found"] is True
     assert result["sections_detected"]["experience"] is True
@@ -43,10 +46,12 @@ def test_analyze_empty_cv():
     """Test l'analyse d'un CV vide."""
     engine = CVAnalyzerEngine()
     
-    result = engine.analyze("")
-    
+    import asyncio
+    result = asyncio.run(engine.analyze(""))
+
     assert result["overall_score"] == 0
     assert result["detected_skills"] == []
+
 
 
 def test_extract_skills():

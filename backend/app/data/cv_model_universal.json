@@ -1,0 +1,309 @@
+{
+  "model_name": "CV-Pro-Universal-2024",
+  "version": "2.0",
+  "based_on": [
+    "LinkedIn Talent Solutions 2024",
+    "Harvard Business Review - CV Optimization",
+    "TopResume ATS Study",
+    "Glassdoor Hiring Analytics",
+    "World Economic Forum - Future of Jobs"
+  ],
+  "structure": {
+    "header": {
+      "required": true,
+      "max_lines": 3,
+      "forbidden": [
+        "photo",
+        "date_naissance",
+        "etat_civil",
+        "religion",
+        "ethnie"
+      ],
+      "required_fields": [
+        "nom_complet",
+        "email",
+        "telephone",
+        "ville_pays"
+      ],
+      "optional_fields": [
+        "linkedin",
+        "portfolio",
+        "github",
+        "site_web"
+      ],
+      "format": "texte_simple_sans_tableau",
+      "example": "Jean Dupont | jean.dupont@email.com | +243 81 234 5678 | Kinshasa, RDC | linkedin.com/in/jeandupont"
+    },
+    "professional_summary": {
+      "required": true,
+      "max_chars": 400,
+      "max_lines": 4,
+      "must_include": [
+        "titre_metier",
+        "annees_experience",
+        "realisation_chiffree_1",
+        "realisation_chiffree_2",
+        "objectif_poste"
+      ],
+      "example": "Développeur Full-Stack avec 5 ans d'expérience. Spécialisé React/Node.js. Réduit temps de chargement de 40% chez TechCorp. Augmenté satisfaction client de 25%. À la recherche d'un poste Lead Developer pour piloter des équipes techniques.",
+      "forbidden_patterns": [
+        "Je suis à la recherche",
+        "Je souhaite",
+        "Je désire",
+        "Motivé et dynamique",
+        "Sérieux et ponctuel"
+      ]
+    },
+    "experience": {
+      "required": true,
+      "order": "anti-chronologique",
+      "per_job": {
+        "title": "poste",
+        "company": "entreprise",
+        "dates": "MM/AAAA - MM/AAAA ou 'Présent'",
+        "location": "ville, pays",
+        "bullets": {
+          "min": 3,
+          "max": 5,
+          "must_start_with": "verbe_action",
+          "must_include_metric": true,
+          "metric_ratio": 0.7
+        }
+      },
+      "action_verbs": [
+        "Développé",
+        "Conçu",
+        "Géré",
+        "Optimisé",
+        "Réduit",
+        "Augmenté",
+        "Créé",
+        "Implémenté",
+        "Piloté",
+        "Automatisé",
+        "Analysé",
+        "Coordonné",
+        "Formé",
+        "Négocié",
+        "Résolu",
+        "Supervisé",
+        "Conduit",
+        "Établi",
+        "Amélioré",
+        "Lancé"
+      ],
+      "weak_verbs": [
+        "Fait",
+        "Aide",
+        "Participé",
+        "Assisté",
+        "Travaillé",
+        "Occupé",
+        "Tenu",
+        "Assuré",
+        "Effectué",
+        "Réalisé"
+      ]
+    },
+    "skills": {
+      "required": true,
+      "format": "categories",
+      "categories": [
+        "Hard Skills (Techniques)",
+        "Soft Skills (Comportementales)",
+        "Langues",
+        "Outils & Technologies"
+      ],
+      "ats_optimization": "mots_cles_exact_offre",
+      "avoid": [
+        "competences_vagues",
+        "niveau_expert_sans_preuve",
+        "maitrise parfaite"
+      ]
+    },
+    "education": {
+      "required": true,
+      "order": "plus_recent",
+      "include": [
+        "diplome",
+        "ecole",
+        "annee",
+        "mention"
+      ],
+      "optional": [
+        "releve_notes",
+        "projets_majeurs",
+        "these"
+      ]
+    },
+    "optional_sections": {
+      "certifications": {
+        "condition": "Si pertinent pour le poste",
+        "format": "Nom - Organisme - Année - ID (si applicable)"
+      },
+      "projects": {
+        "condition": "Pour juniors ou changement de carrière",
+        "format": "Nom - Description - Technologies - Résultat"
+      },
+      "languages": {
+        "condition": "Toujours inclure",
+        "format": "Langue - Niveau (A1-C2 ou Basic/Fluent/Native)",
+        "required": [
+          "Français",
+          "Anglais"
+        ]
+      },
+      "publications": {
+        "condition": "Pour postes académiques/R&D",
+        "format": "APA ou IEEE"
+      }
+    }
+  },
+  "visual_design": {
+    "format": "PDF",
+    "layout": "clean_professional",
+    "colors": {
+      "primary": "#1a365d",
+      "secondary": "#2c5282",
+      "text": "#1a202c",
+      "background": "#ffffff",
+      "accent": "#3182ce",
+      "light_gray": "#e2e8f0"
+    },
+    "fonts": {
+      "heading": "Helvetica, Arial, Calibri, sans-serif",
+      "body": "Helvetica, Arial, Calibri, sans-serif",
+      "size_title": "16-18pt",
+      "size_heading": "13-14pt",
+      "size_body": "10-11pt",
+      "size_small": "9pt"
+    },
+    "margins": {
+      "top": "15mm",
+      "bottom": "15mm",
+      "left": "20mm",
+      "right": "20mm"
+    },
+    "spacing": {
+      "line_height": "1.15-1.2",
+      "paragraph_spacing": "6-8pt",
+      "section_spacing": "12-14pt"
+    },
+    "forbidden_elements": [
+      "photo",
+      "tableaux_complexes",
+      "graphiques",
+      "couleurs_vives",
+      "polices_decoratives",
+      "arriere_plan_colore",
+      "colonnes_multiples",
+      "icones_emojis",
+      "qr_code",
+      "bordures_epaisses"
+    ],
+    "recommended_elements": [
+      "lignes_separatrices_fines",
+      "puces_standard",
+      "gras_pour_titres",
+      "italique_pour_dates"
+    ]
+  },
+  "ats_compatibility": {
+    "score_max": 100,
+    "criteria": {
+      "format_fichier": {
+        "points": 15,
+        "requirements": [
+          "PDF",
+          "pas_de_DOCX_avec_macros"
+        ]
+      },
+      "structure_sections": {
+        "points": 20,
+        "requirements": [
+          "sections_claires",
+          "titres_standard"
+        ]
+      },
+      "mots_cles": {
+        "points": 25,
+        "requirements": [
+          "mots_cles_offre",
+          "synonymes",
+          "acronymes"
+        ]
+      },
+      "sans_tableaux": {
+        "points": 15,
+        "requirements": [
+          "pas_de_tableaux",
+          "pas_de_colonnes"
+        ]
+      },
+      "police_standard": {
+        "points": 10,
+        "requirements": [
+          "Arial",
+          "Calibri",
+          "Helvetica",
+          "Georgia"
+        ]
+      },
+      "pas_graphiques": {
+        "points": 15,
+        "requirements": [
+          "texte_seul",
+          "pas_dimages"
+        ]
+      },
+      "pas_en_tete_pied": {
+        "points": 5,
+        "requirements": [
+          "pas_dinfo_critique_en_tete"
+        ]
+      }
+    }
+  },
+  "scoring_global": {
+    "sections_completes": 25,
+    "metrics_chiffrees": 25,
+    "ats_optimized": 20,
+    "mise_en_page": 15,
+    "pertinence_poste": 15
+  },
+  "length_guidelines": {
+    "junior_0_3_ans": {
+      "pages": 1,
+      "max_chars": 3500
+    },
+    "mid_3_7_ans": {
+      "pages": 1,
+      "max_chars": 4000
+    },
+    "senior_7_15_ans": {
+      "pages": 2,
+      "max_chars": 5500
+    },
+    "executive_15_plus": {
+      "pages": 2,
+      "max_chars": 6000
+    }
+  },
+  "rdc_specific": {
+    "currency_salary": "USD / CDF",
+    "contact_format": "+243 XX XXX XXXX",
+    "location_format": "Ville, Province, RDC",
+    "language_priority": [
+      "Français",
+      "Anglais",
+      "Lingala",
+      "Swahili"
+    ],
+    "cultural_notes": [
+      "Inclure les références professionnelles (2-3 contacts)",
+      "Mentionner la disponibilité immédiate si applicable",
+      "Indiquer la mobilité géographique (Kinshasa, Lubumbashi, etc.)",
+      "Préciser le statut de travail (salarie, freelance, consultant)"
+    ]
+  }
+}

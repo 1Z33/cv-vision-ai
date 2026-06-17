@@ -24,6 +24,8 @@ services:
         value: "30"
       - key: REFRESH_TOKEN_EXPIRE_DAYS
         value: "7"
+      - key: GEMINI_API_KEY
+        value: "AIzaSyA2P9bM7gbyC4iQe1R8yemoDh8rag2CTM0"
 
 databases:
   - name: cv_vision_db

@@ -56,5 +56,5 @@ async def get_current_active_user(current_user = Depends(get_current_user)):
     Vérifie que l'utilisateur est actif.
     """
     if not current_user.is_active:
-        raise HTTPException(status_code=400, detail="Utilisateur inactif")
+        raise HTTPException(status_code=403, detail="Utilisateur inactif")
     return current_user

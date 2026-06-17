@@ -1,0 +1,4 @@
+alembic revision --autogenerate généré une migration vide: 902b185c90da_add_gap_bridge_tables.py (upgrade/downgrade = pass)
+Pour finaliser gap bridge, il faudra éditer ce fichier et ajouter op.create_table pour gap_bridge_plans et gap_bridge_items.
+Puis re-run alembic upgrade head et pytest -q.
+

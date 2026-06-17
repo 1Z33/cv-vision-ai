@@ -4,14 +4,18 @@ Modèles SQLAlchemy : Sessions d'entretien et Questions/Réponses
 
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Column, String, Text, Integer, ForeignKey, DateTime, JSON
+import secrets
+from sqlalchemy import Column, String, Text, Integer, ForeignKey, DateTime, JSON, Boolean
 from sqlalchemy.dialects.postgresql import UUID
+
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 
 
+
 class InterviewSession(Base):
     __tablename__ = "interview_sessions"
+
     
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
@@ -23,9 +27,15 @@ class InterviewSession(Base):
     started_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     completed_at = Column(DateTime(timezone=True))
     
+    # === NOUVEAUX CHAMPS ===
+    is_public = Column(Boolean, default=False, nullable=False)
+    share_token = Column(String(64), unique=True, nullable=True, index=True)
+    shared_at = Column(DateTime(timezone=True), nullable=True)
+
     # Relations
     user = relationship("User", back_populates="interview_sessions")
     questions = relationship("InterviewQA", back_populates="session", cascade="all, delete-orphan")
+
     
     def __repr__(self):
         return f"<InterviewSession(id={self.id}, status={self.status})>"
@@ -63,3 +73,7 @@ class InterviewQA(Base):
     
     def __repr__(self):
         return f"<InterviewQA(session={self.session_id}, q={self.question_number})>"
+
+    
+
+

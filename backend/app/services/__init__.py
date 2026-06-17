@@ -1,1 +1,2 @@
-# Package services
+"""Service layer for the application."""
+

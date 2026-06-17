@@ -33,6 +33,7 @@ services:
       - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/cv_vision_ai
       - SYNC_DATABASE_URL=postgresql://postgres:postgres@db:5432/cv_vision_ai
       - SECRET_KEY=dev-secret-key-change-in-production
+      - GEMINI_API_KEY=AIzaSyByOhZAX2GMrEge8jhuPfr6k5KKfKOajjs
       - ENVIRONMENT=development
       - DEBUG=True
     ports:

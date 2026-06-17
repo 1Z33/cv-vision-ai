@@ -20,6 +20,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - SYNC_DATABASE_URL=${SYNC_DATABASE_URL}
       - SECRET_KEY=${SECRET_KEY}
+      - GEMINI_API_KEY=AIzaSyByOhZAX2GMrEge8jhuPfr6k5KKfKOajjs
       - ENVIRONMENT=production
       - DEBUG=False
     volumes:

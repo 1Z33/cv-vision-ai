@@ -1,0 +1,1857 @@
+{
+  "_metadata": {
+    "country": "RDC",
+    "currency": "USD",
+    "source": "World Bank + RAID/CAJJ 2025 + ITIE RDC + OpenShores 2026",
+    "gdp_per_capita_annual_usd": 580,
+    "gdp_per_capita_monthly_usd": 48,
+    "decent_wage_kolwezi_2025": 520,
+    "exchange_rate_usd_cdf": 2800,
+    "last_updated": "2025-06-05",
+    "notes": "Les salaires sont des estimations basées sur données macro + structure sectorielle. Les secteurs minier et ONG paient significativement plus."
+  },
+  "sectors": {
+    "agriculture": {
+      "ratio_min": 0.6,
+      "ratio_max": 2.5,
+      "display": "Agriculture & Élevage"
+    },
+    "mines": {
+      "ratio_min": 3.0,
+      "ratio_max": 225.0,
+      "display": "Mines & Extraction"
+    },
+    "administration": {
+      "ratio_min": 1.0,
+      "ratio_max": 4.0,
+      "display": "Administration & Fonction Publique"
+    },
+    "sante": {
+      "ratio_min": 1.5,
+      "ratio_max": 8.0,
+      "display": "Santé & Médical"
+    },
+    "education": {
+      "ratio_min": 0.8,
+      "ratio_max": 4.0,
+      "display": "Éducation & Formation"
+    },
+    "commerce": {
+      "ratio_min": 0.8,
+      "ratio_max": 4.0,
+      "display": "Commerce & Distribution"
+    },
+    "transport": {
+      "ratio_min": 0.8,
+      "ratio_max": 4.0,
+      "display": "Transport & Logistique"
+    },
+    "construction": {
+      "ratio_min": 1.0,
+      "ratio_max": 5.0,
+      "display": "Construction & BTP"
+    },
+    "telecom": {
+      "ratio_min": 2.0,
+      "ratio_max": 12.0,
+      "display": "Télécommunications & IT"
+    },
+    "banque": {
+      "ratio_min": 2.0,
+      "ratio_max": 10.0,
+      "display": "Banque & Finance"
+    },
+    "ong": {
+      "ratio_min": 3.0,
+      "ratio_max": 15.0,
+      "display": "ONG & Humanitaire"
+    },
+    "securite": {
+      "ratio_min": 0.8,
+      "ratio_max": 3.5,
+      "display": "Sécurité & Défense"
+    },
+    "hotellerie": {
+      "ratio_min": 0.6,
+      "ratio_max": 2.5,
+      "display": "Hôtellerie & Restauration"
+    },
+    "artisanat": {
+      "ratio_min": 0.5,
+      "ratio_max": 2.0,
+      "display": "Artisanat & Industrie Légère"
+    },
+    "media": {
+      "ratio_min": 1.0,
+      "ratio_max": 4.0,
+      "display": "Média & Communication"
+    },
+    "energie": {
+      "ratio_min": 2.0,
+      "ratio_max": 10.0,
+      "display": "Énergie & Eau"
+    },
+    "environnement": {
+      "ratio_min": 1.5,
+      "ratio_max": 6.0,
+      "display": "Environnement & Développement Durable"
+    },
+    "droit": {
+      "ratio_min": 1.5,
+      "ratio_max": 6.0,
+      "display": "Droit & Justice"
+    },
+    "culture": {
+      "ratio_min": 0.5,
+      "ratio_max": 2.0,
+      "display": "Culture & Arts"
+    },
+    "sport": {
+      "ratio_min": 0.5,
+      "ratio_max": 3.0,
+      "display": "Sport & Loisirs"
+    }
+  },
+  "jobs": {
+    "agriculteur": {
+      "display_name": "Agriculteur",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "cultivateur": {
+      "display_name": "Cultivateur",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "planteur": {
+      "display_name": "Planteur",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "pecheur": {
+      "display_name": "Pêcheur",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "eleveur": {
+      "display_name": "Éleveur",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "agronome": {
+      "display_name": "Agronome",
+      "sector": "agriculture",
+      "qualification": 4,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "technicien_agricole": {
+      "display_name": "Technicien Agricole",
+      "sector": "agriculture",
+      "qualification": 3,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "jardinier": {
+      "display_name": "Jardinier",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "paysagiste": {
+      "display_name": "Paysagiste",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "veterinaire": {
+      "display_name": "Vétérinaire",
+      "sector": "agriculture",
+      "qualification": 5,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "ouvrier_agricole": {
+      "display_name": "Ouvrier Agricole",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "cooperateur": {
+      "display_name": "Coopérateur Agricole",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "transformation_alimentaire": {
+      "display_name": "Transformation Alimentaire",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "boulanger": {
+      "display_name": "Boulanger",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "boucher": {
+      "display_name": "Boucher",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "patissier": {
+      "display_name": "Pâtissier",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "laitier": {
+      "display_name": "Laitier",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "apiculteur": {
+      "display_name": "Apiculteur",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "aviculteur": {
+      "display_name": "Aviculteur",
+      "sector": "agriculture",
+      "qualification": 1,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "horticulteur": {
+      "display_name": "Horticulteur",
+      "sector": "agriculture",
+      "qualification": 2,
+      "display_sector": "Agriculture & Élevage"
+    },
+    "mineur": {
+      "display_name": "Mineur",
+      "sector": "mines",
+      "qualification": 2,
+      "display_sector": "Mines & Extraction"
+    },
+    "foreur": {
+      "display_name": "Foreur",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "dynamiteur": {
+      "display_name": "Dynamiteur",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "operateur_mine": {
+      "display_name": "Opérateur de Mine",
+      "sector": "mines",
+      "qualification": 2,
+      "display_sector": "Mines & Extraction"
+    },
+    "geologue": {
+      "display_name": "Géologue",
+      "sector": "mines",
+      "qualification": 5,
+      "display_sector": "Mines & Extraction"
+    },
+    "ingenieur_mines": {
+      "display_name": "Ingénieur des Mines",
+      "sector": "mines",
+      "qualification": 5,
+      "display_sector": "Mines & Extraction"
+    },
+    "technicien_mine": {
+      "display_name": "Technicien Minier",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "metallurgiste": {
+      "display_name": "Métallurgiste",
+      "sector": "mines",
+      "qualification": 4,
+      "display_sector": "Mines & Extraction"
+    },
+    "traitement_minerai": {
+      "display_name": "Traitement du Minerai",
+      "sector": "mines",
+      "qualification": 2,
+      "display_sector": "Mines & Extraction"
+    },
+    "controleur_qualite_mine": {
+      "display_name": "Contrôleur Qualité Mine",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "securite_mine": {
+      "display_name": "Sécurité Minière",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "mecanicien_mine": {
+      "display_name": "Mécanicien Minier",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "electricien_mine": {
+      "display_name": "Électricien Minier",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "chef_equipe_mine": {
+      "display_name": "Chef d'Équipe Mine",
+      "sector": "mines",
+      "qualification": 4,
+      "display_sector": "Mines & Extraction"
+    },
+    "responsable_mine": {
+      "display_name": "Responsable de Mine",
+      "sector": "mines",
+      "qualification": 5,
+      "display_sector": "Mines & Extraction"
+    },
+    "topographe_mine": {
+      "display_name": "Topographe Minier",
+      "sector": "mines",
+      "qualification": 3,
+      "display_sector": "Mines & Extraction"
+    },
+    "sous_traitant_mine": {
+      "display_name": "Sous-traitant Minier",
+      "sector": "mines",
+      "qualification": 1,
+      "display_sector": "Mines & Extraction"
+    },
+    "exploitant_minier_artisanal": {
+      "display_name": "Exploitant Minier Artisanal",
+      "sector": "mines",
+      "qualification": 1,
+      "display_sector": "Mines & Extraction"
+    },
+    "fonctionnaire": {
+      "display_name": "Fonctionnaire",
+      "sector": "administration",
+      "qualification": 3,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "administrateur": {
+      "display_name": "Administrateur",
+      "sector": "administration",
+      "qualification": 4,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "secretaire": {
+      "display_name": "Secrétaire",
+      "sector": "administration",
+      "qualification": 2,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "comptable": {
+      "display_name": "Comptable",
+      "sector": "administration",
+      "qualification": 3,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "gestionnaire": {
+      "display_name": "Gestionnaire",
+      "sector": "administration",
+      "qualification": 3,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "ressources_humaines": {
+      "display_name": "Responsable RH",
+      "sector": "administration",
+      "qualification": 3,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "juriste": {
+      "display_name": "Juriste",
+      "sector": "administration",
+      "qualification": 4,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "avocat": {
+      "display_name": "Avocat",
+      "sector": "droit",
+      "qualification": 5,
+      "display_sector": "Droit & Justice"
+    },
+    "notaire": {
+      "display_name": "Notaire",
+      "sector": "droit",
+      "qualification": 5,
+      "display_sector": "Droit & Justice"
+    },
+    "magistrat": {
+      "display_name": "Magistrat",
+      "sector": "droit",
+      "qualification": 5,
+      "display_sector": "Droit & Justice"
+    },
+    "greffier": {
+      "display_name": "Greffier",
+      "sector": "droit",
+      "qualification": 3,
+      "display_sector": "Droit & Justice"
+    },
+    "huissier": {
+      "display_name": "Huissier de Justice",
+      "sector": "droit",
+      "qualification": 3,
+      "display_sector": "Droit & Justice"
+    },
+    "archiviste": {
+      "display_name": "Archiviste",
+      "sector": "administration",
+      "qualification": 2,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "chef_bureau": {
+      "display_name": "Chef de Bureau",
+      "sector": "administration",
+      "qualification": 4,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "directeur_administratif": {
+      "display_name": "Directeur Administratif",
+      "sector": "administration",
+      "qualification": 5,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "consultant": {
+      "display_name": "Consultant",
+      "sector": "administration",
+      "qualification": 4,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "auditeur": {
+      "display_name": "Auditeur",
+      "sector": "administration",
+      "qualification": 4,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "inspecteur": {
+      "display_name": "Inspecteur",
+      "sector": "administration",
+      "qualification": 4,
+      "display_sector": "Administration & Fonction Publique"
+    },
+    "medecin": {
+      "display_name": "Médecin",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "infirmier": {
+      "display_name": "Infirmier",
+      "sector": "sante",
+      "qualification": 3,
+      "display_sector": "Santé & Médical"
+    },
+    "infirmiere": {
+      "display_name": "Infirmière",
+      "sector": "sante",
+      "qualification": 3,
+      "display_sector": "Santé & Médical"
+    },
+    "chirurgien": {
+      "display_name": "Chirurgien",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "pharmacien": {
+      "display_name": "Pharmacien",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "dentiste": {
+      "display_name": "Dentiste",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "sage_femme": {
+      "display_name": "Sage-Femme",
+      "sector": "sante",
+      "qualification": 3,
+      "display_sector": "Santé & Médical"
+    },
+    "kinesitherapeute": {
+      "display_name": "Kinésithérapeute",
+      "sector": "sante",
+      "qualification": 4,
+      "display_sector": "Santé & Médical"
+    },
+    "laborantin": {
+      "display_name": "Laborantin",
+      "sector": "sante",
+      "qualification": 3,
+      "display_sector": "Santé & Médical"
+    },
+    "technicien_labo": {
+      "display_name": "Technicien de Laboratoire",
+      "sector": "sante",
+      "qualification": 3,
+      "display_sector": "Santé & Médical"
+    },
+    "radiologue": {
+      "display_name": "Radiologue",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "anesthesiste": {
+      "display_name": "Anesthésiste",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "pediatre": {
+      "display_name": "Pédiatre",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "gynecologue": {
+      "display_name": "Gynécologue",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "ophtalmologue": {
+      "display_name": "Ophtalmologue",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "psychiatre": {
+      "display_name": "Psychiatre",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "psychologue": {
+      "display_name": "Psychologue",
+      "sector": "sante",
+      "qualification": 4,
+      "display_sector": "Santé & Médical"
+    },
+    "nutritionniste": {
+      "display_name": "Nutritionniste",
+      "sector": "sante",
+      "qualification": 3,
+      "display_sector": "Santé & Médical"
+    },
+    "hygieniste": {
+      "display_name": "Hygiéniste",
+      "sector": "sante",
+      "qualification": 2,
+      "display_sector": "Santé & Médical"
+    },
+    "ambulancier": {
+      "display_name": "Ambulancier",
+      "sector": "sante",
+      "qualification": 2,
+      "display_sector": "Santé & Médical"
+    },
+    "epidemiologiste": {
+      "display_name": "Épidémiologiste",
+      "sector": "sante",
+      "qualification": 5,
+      "display_sector": "Santé & Médical"
+    },
+    "technicien_sante": {
+      "display_name": "Technicien de Santé",
+      "sector": "sante",
+      "qualification": 2,
+      "display_sector": "Santé & Médical"
+    },
+    "enseignant": {
+      "display_name": "Enseignant",
+      "sector": "education",
+      "qualification": 3,
+      "display_sector": "Éducation & Formation"
+    },
+    "professeur": {
+      "display_name": "Professeur",
+      "sector": "education",
+      "qualification": 4,
+      "display_sector": "Éducation & Formation"
+    },
+    "instituteur": {
+      "display_name": "Instituteur",
+      "sector": "education",
+      "qualification": 3,
+      "display_sector": "Éducation & Formation"
+    },
+    "directeur_ecole": {
+      "display_name": "Directeur d'École",
+      "sector": "education",
+      "qualification": 4,
+      "display_sector": "Éducation & Formation"
+    },
+    "proviseur": {
+      "display_name": "Proviseur",
+      "sector": "education",
+      "qualification": 4,
+      "display_sector": "Éducation & Formation"
+    },
+    "conseiller_pedagogique": {
+      "display_name": "Conseiller Pédagogique",
+      "sector": "education",
+      "qualification": 4,
+      "display_sector": "Éducation & Formation"
+    },
+    "formateur": {
+      "display_name": "Formateur",
+      "sector": "education",
+      "qualification": 3,
+      "display_sector": "Éducation & Formation"
+    },
+    "professeur_universitaire": {
+      "display_name": "Professeur d'Université",
+      "sector": "education",
+      "qualification": 5,
+      "display_sector": "Éducation & Formation"
+    },
+    "chercheur": {
+      "display_name": "Chercheur",
+      "sector": "education",
+      "qualification": 5,
+      "display_sector": "Éducation & Formation"
+    },
+    "bibliothecaire": {
+      "display_name": "Bibliothécaire",
+      "sector": "education",
+      "qualification": 2,
+      "display_sector": "Éducation & Formation"
+    },
+    "documentaliste": {
+      "display_name": "Documentaliste",
+      "sector": "education",
+      "qualification": 2,
+      "display_sector": "Éducation & Formation"
+    },
+    "surveillant": {
+      "display_name": "Surveillant",
+      "sector": "education",
+      "qualification": 2,
+      "display_sector": "Éducation & Formation"
+    },
+    "educateur": {
+      "display_name": "Éducateur",
+      "sector": "education",
+      "qualification": 3,
+      "display_sector": "Éducation & Formation"
+    },
+    "assistant_social": {
+      "display_name": "Assistant Social",
+      "sector": "education",
+      "qualification": 3,
+      "display_sector": "Éducation & Formation"
+    },
+    "animateur_socioculturel": {
+      "display_name": "Animateur Socioculturel",
+      "sector": "education",
+      "qualification": 2,
+      "display_sector": "Éducation & Formation"
+    },
+    "inspecteur_pedagogique": {
+      "display_name": "Inspecteur Pédagogique",
+      "sector": "education",
+      "qualification": 4,
+      "display_sector": "Éducation & Formation"
+    },
+    "directeur_pedagogique": {
+      "display_name": "Directeur Pédagogique",
+      "sector": "education",
+      "qualification": 4,
+      "display_sector": "Éducation & Formation"
+    },
+    "tuteur": {
+      "display_name": "Tuteur",
+      "sector": "education",
+      "qualification": 2,
+      "display_sector": "Éducation & Formation"
+    },
+    "commercant": {
+      "display_name": "Commerçant",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "vendeur": {
+      "display_name": "Vendeur",
+      "sector": "commerce",
+      "qualification": 1,
+      "display_sector": "Commerce & Distribution"
+    },
+    "caissier": {
+      "display_name": "Caissier",
+      "sector": "commerce",
+      "qualification": 1,
+      "display_sector": "Commerce & Distribution"
+    },
+    "chef_rayon": {
+      "display_name": "Chef de Rayon",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "responsable_magasin": {
+      "display_name": "Responsable de Magasin",
+      "sector": "commerce",
+      "qualification": 3,
+      "display_sector": "Commerce & Distribution"
+    },
+    "import_export": {
+      "display_name": "Import/Export",
+      "sector": "commerce",
+      "qualification": 3,
+      "display_sector": "Commerce & Distribution"
+    },
+    "negociant": {
+      "display_name": "Négociant",
+      "sector": "commerce",
+      "qualification": 3,
+      "display_sector": "Commerce & Distribution"
+    },
+    "fournisseur": {
+      "display_name": "Fournisseur",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "distributeur": {
+      "display_name": "Distributeur",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "agent_commercial": {
+      "display_name": "Agent Commercial",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "representant": {
+      "display_name": "Représentant",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "marketing": {
+      "display_name": "Responsable Marketing",
+      "sector": "commerce",
+      "qualification": 3,
+      "display_sector": "Commerce & Distribution"
+    },
+    "publicitaire": {
+      "display_name": "Publicitaire",
+      "sector": "commerce",
+      "qualification": 3,
+      "display_sector": "Commerce & Distribution"
+    },
+    "relation_client": {
+      "display_name": "Relation Client",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "logisticien": {
+      "display_name": "Logisticien",
+      "sector": "commerce",
+      "qualification": 3,
+      "display_sector": "Commerce & Distribution"
+    },
+    "approvisionneur": {
+      "display_name": "Approvisionneur",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "gestionnaire_stock": {
+      "display_name": "Gestionnaire de Stock",
+      "sector": "commerce",
+      "qualification": 2,
+      "display_sector": "Commerce & Distribution"
+    },
+    "e_commerce": {
+      "display_name": "E-commerce Manager",
+      "sector": "commerce",
+      "qualification": 3,
+      "display_sector": "Commerce & Distribution"
+    },
+    "chauffeur": {
+      "display_name": "Chauffeur",
+      "sector": "transport",
+      "qualification": 1,
+      "display_sector": "Transport & Logistique"
+    },
+    "chauffeur_camion": {
+      "display_name": "Chauffeur Poids Lourd",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "chauffeur_bus": {
+      "display_name": "Chauffeur de Bus",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "mecanicien": {
+      "display_name": "Mécanicien",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "mecanicien_auto": {
+      "display_name": "Mécanicien Auto",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "carrossier": {
+      "display_name": "Carrossier",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "electricien_auto": {
+      "display_name": "Électricien Auto",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "controleur_technique": {
+      "display_name": "Contrôleur Technique",
+      "sector": "transport",
+      "qualification": 3,
+      "display_sector": "Transport & Logistique"
+    },
+    "pilote": {
+      "display_name": "Pilote d'Avion",
+      "sector": "transport",
+      "qualification": 4,
+      "display_sector": "Transport & Logistique"
+    },
+    "marin": {
+      "display_name": "Marin",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "docker": {
+      "display_name": "Docker",
+      "sector": "transport",
+      "qualification": 1,
+      "display_sector": "Transport & Logistique"
+    },
+    "manutentionnaire": {
+      "display_name": "Manutentionnaire",
+      "sector": "transport",
+      "qualification": 1,
+      "display_sector": "Transport & Logistique"
+    },
+    "expediteur": {
+      "display_name": "Expéditeur",
+      "sector": "transport",
+      "qualification": 2,
+      "display_sector": "Transport & Logistique"
+    },
+    "agent_maritime": {
+      "display_name": "Agent Maritime",
+      "sector": "transport",
+      "qualification": 3,
+      "display_sector": "Transport & Logistique"
+    },
+    "responsable_flotte": {
+      "display_name": "Responsable de Flotte",
+      "sector": "transport",
+      "qualification": 4,
+      "display_sector": "Transport & Logistique"
+    },
+    "mototaxi": {
+      "display_name": "Mototaxi (Wewa)",
+      "sector": "transport",
+      "qualification": 1,
+      "display_sector": "Transport & Logistique"
+    },
+    "macon": {
+      "display_name": "Maçon",
+      "sector": "construction",
+      "qualification": 1,
+      "display_sector": "Construction & BTP"
+    },
+    "charpentier": {
+      "display_name": "Charpentier",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "menuisier": {
+      "display_name": "Menuisier",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "plombier": {
+      "display_name": "Plombier",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "electricien_batiment": {
+      "display_name": "Électricien Bâtiment",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "peintre": {
+      "display_name": "Peintre",
+      "sector": "construction",
+      "qualification": 1,
+      "display_sector": "Construction & BTP"
+    },
+    "carreleur": {
+      "display_name": "Carreleur",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "etancheur": {
+      "display_name": "Étancheur",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "soudeur": {
+      "display_name": "Soudeur",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "grutier": {
+      "display_name": "Grutier",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "conducteur_travaux": {
+      "display_name": "Conducteur de Travaux",
+      "sector": "construction",
+      "qualification": 4,
+      "display_sector": "Construction & BTP"
+    },
+    "architecte": {
+      "display_name": "Architecte",
+      "sector": "construction",
+      "qualification": 5,
+      "display_sector": "Construction & BTP"
+    },
+    "ingenieur_btp": {
+      "display_name": "Ingénieur BTP",
+      "sector": "construction",
+      "qualification": 5,
+      "display_sector": "Construction & BTP"
+    },
+    "geometre": {
+      "display_name": "Géomètre",
+      "sector": "construction",
+      "qualification": 3,
+      "display_sector": "Construction & BTP"
+    },
+    "topographe": {
+      "display_name": "Topographe",
+      "sector": "construction",
+      "qualification": 3,
+      "display_sector": "Construction & BTP"
+    },
+    "chef_chantier": {
+      "display_name": "Chef de Chantier",
+      "sector": "construction",
+      "qualification": 3,
+      "display_sector": "Construction & BTP"
+    },
+    "manoeuvre": {
+      "display_name": "Manœuvre",
+      "sector": "construction",
+      "qualification": 1,
+      "display_sector": "Construction & BTP"
+    },
+    "ferrailleur": {
+      "display_name": "Ferrailleur",
+      "sector": "construction",
+      "qualification": 2,
+      "display_sector": "Construction & BTP"
+    },
+    "informaticien": {
+      "display_name": "Informaticien",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "developpeur": {
+      "display_name": "Développeur",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "programmeur": {
+      "display_name": "Programmeur",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "administrateur_reseau": {
+      "display_name": "Administrateur Réseau",
+      "sector": "telecom",
+      "qualification": 4,
+      "display_sector": "Télécommunications & IT"
+    },
+    "technicien_reseau": {
+      "display_name": "Technicien Réseau",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "technicien_telecom": {
+      "display_name": "Technicien Télécom",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "installateur_fibre": {
+      "display_name": "Installateur Fibre",
+      "sector": "telecom",
+      "qualification": 2,
+      "display_sector": "Télécommunications & IT"
+    },
+    "reparateur_telephone": {
+      "display_name": "Réparateur Téléphone",
+      "sector": "telecom",
+      "qualification": 2,
+      "display_sector": "Télécommunications & IT"
+    },
+    "webmaster": {
+      "display_name": "Webmaster",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "community_manager": {
+      "display_name": "Community Manager",
+      "sector": "telecom",
+      "qualification": 2,
+      "display_sector": "Télécommunications & IT"
+    },
+    "data_analyst": {
+      "display_name": "Data Analyst",
+      "sector": "telecom",
+      "qualification": 4,
+      "display_sector": "Télécommunications & IT"
+    },
+    "data_scientist": {
+      "display_name": "Data Scientist",
+      "sector": "telecom",
+      "qualification": 5,
+      "display_sector": "Télécommunications & IT"
+    },
+    "cybersecurite": {
+      "display_name": "Expert Cybersécurité",
+      "sector": "telecom",
+      "qualification": 5,
+      "display_sector": "Télécommunications & IT"
+    },
+    "cloud_engineer": {
+      "display_name": "Cloud Engineer",
+      "sector": "telecom",
+      "qualification": 5,
+      "display_sector": "Télécommunications & IT"
+    },
+    "devops": {
+      "display_name": "DevOps Engineer",
+      "sector": "telecom",
+      "qualification": 4,
+      "display_sector": "Télécommunications & IT"
+    },
+    "support_technique": {
+      "display_name": "Support Technique",
+      "sector": "telecom",
+      "qualification": 2,
+      "display_sector": "Télécommunications & IT"
+    },
+    "testeur_logiciel": {
+      "display_name": "Testeur Logiciel",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "ui_ux_designer": {
+      "display_name": "UI/UX Designer",
+      "sector": "telecom",
+      "qualification": 3,
+      "display_sector": "Télécommunications & IT"
+    },
+    "intelligence_artificielle": {
+      "display_name": "Ingénieur IA",
+      "sector": "telecom",
+      "qualification": 5,
+      "display_sector": "Télécommunications & IT"
+    },
+    "roboticien": {
+      "display_name": "Roboticien",
+      "sector": "telecom",
+      "qualification": 5,
+      "display_sector": "Télécommunications & IT"
+    },
+    "technicien_informatique": {
+      "display_name": "Technicien Informatique",
+      "sector": "telecom",
+      "qualification": 2,
+      "display_sector": "Télécommunications & IT"
+    },
+    "chef_projet_it": {
+      "display_name": "Chef de Projet IT",
+      "sector": "telecom",
+      "qualification": 4,
+      "display_sector": "Télécommunications & IT"
+    },
+    "banquier": {
+      "display_name": "Banquier",
+      "sector": "banque",
+      "qualification": 3,
+      "display_sector": "Banque & Finance"
+    },
+    "agent_bancaire": {
+      "display_name": "Agent Bancaire",
+      "sector": "banque",
+      "qualification": 2,
+      "display_sector": "Banque & Finance"
+    },
+    "conseiller_financier": {
+      "display_name": "Conseiller Financier",
+      "sector": "banque",
+      "qualification": 3,
+      "display_sector": "Banque & Finance"
+    },
+    "analyste_financier": {
+      "display_name": "Analyste Financier",
+      "sector": "banque",
+      "qualification": 4,
+      "display_sector": "Banque & Finance"
+    },
+    "comptable_expert": {
+      "display_name": "Expert-Comptable",
+      "sector": "banque",
+      "qualification": 4,
+      "display_sector": "Banque & Finance"
+    },
+    "auditeur_financier": {
+      "display_name": "Auditeur Financier",
+      "sector": "banque",
+      "qualification": 4,
+      "display_sector": "Banque & Finance"
+    },
+    "controleur_gestion": {
+      "display_name": "Contrôleur de Gestion",
+      "sector": "banque",
+      "qualification": 4,
+      "display_sector": "Banque & Finance"
+    },
+    "tresorier": {
+      "display_name": "Trésorier",
+      "sector": "banque",
+      "qualification": 4,
+      "display_sector": "Banque & Finance"
+    },
+    "economiste": {
+      "display_name": "Économiste",
+      "sector": "banque",
+      "qualification": 5,
+      "display_sector": "Banque & Finance"
+    },
+    "statisticien": {
+      "display_name": "Statisticien",
+      "sector": "banque",
+      "qualification": 4,
+      "display_sector": "Banque & Finance"
+    },
+    "assureur": {
+      "display_name": "Assureur",
+      "sector": "banque",
+      "qualification": 3,
+      "display_sector": "Banque & Finance"
+    },
+    "courtier": {
+      "display_name": "Courtier",
+      "sector": "banque",
+      "qualification": 3,
+      "display_sector": "Banque & Finance"
+    },
+    "agent_microfinance": {
+      "display_name": "Agent Microfinance",
+      "sector": "banque",
+      "qualification": 2,
+      "display_sector": "Banque & Finance"
+    },
+    "caissier_banque": {
+      "display_name": "Caissier Bancaire",
+      "sector": "banque",
+      "qualification": 2,
+      "display_sector": "Banque & Finance"
+    },
+    "directeur_agence": {
+      "display_name": "Directeur d'Agence",
+      "sector": "banque",
+      "qualification": 4,
+      "display_sector": "Banque & Finance"
+    },
+    "gestionnaire_credit": {
+      "display_name": "Gestionnaire de Crédit",
+      "sector": "banque",
+      "qualification": 3,
+      "display_sector": "Banque & Finance"
+    },
+    "coordinateur_ong": {
+      "display_name": "Coordinateur ONG",
+      "sector": "ong",
+      "qualification": 4,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "chef_projet_ong": {
+      "display_name": "Chef de Projet ONG",
+      "sector": "ong",
+      "qualification": 4,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "assistant_projet": {
+      "display_name": "Assistant de Projet",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "moniteur_ong": {
+      "display_name": "Moniteur ONG",
+      "sector": "ong",
+      "qualification": 2,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "expert_humanitaire": {
+      "display_name": "Expert Humanitaire",
+      "sector": "ong",
+      "qualification": 5,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "logisticien_ong": {
+      "display_name": "Logisticien ONG",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "achats_ong": {
+      "display_name": "Responsable Achats ONG",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "finances_ong": {
+      "display_name": "Responsable Finances ONG",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "communication_ong": {
+      "display_name": "Responsable Communication ONG",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "protection": {
+      "display_name": "Officier Protection",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "sante_publique_ong": {
+      "display_name": "Santé Publique ONG",
+      "sector": "ong",
+      "qualification": 4,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "nutritionniste_ong": {
+      "display_name": "Nutritionniste ONG",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "hygieniste_ong": {
+      "display_name": "Hygiéniste ONG",
+      "sector": "ong",
+      "qualification": 2,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "eau_assainissement": {
+      "display_name": "Eau & Assainissement",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "ingenieur_agronome_ong": {
+      "display_name": "Ingénieur Agronome ONG",
+      "sector": "ong",
+      "qualification": 4,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "evaluateur": {
+      "display_name": "Évaluateur de Projets",
+      "sector": "ong",
+      "qualification": 4,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "plaidoyer": {
+      "display_name": "Responsable Plaidoyer",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "monitoring_evaluation": {
+      "display_name": "Monitoring & Évaluation",
+      "sector": "ong",
+      "qualification": 3,
+      "display_sector": "ONG & Humanitaire"
+    },
+    "policier": {
+      "display_name": "Policier",
+      "sector": "securite",
+      "qualification": 2,
+      "display_sector": "Sécurité & Défense"
+    },
+    "gendarme": {
+      "display_name": "Gendarme",
+      "sector": "securite",
+      "qualification": 2,
+      "display_sector": "Sécurité & Défense"
+    },
+    "militaire": {
+      "display_name": "Militaire",
+      "sector": "securite",
+      "qualification": 2,
+      "display_sector": "Sécurité & Défense"
+    },
+    "garde_securite": {
+      "display_name": "Garde de Sécurité",
+      "sector": "securite",
+      "qualification": 1,
+      "display_sector": "Sécurité & Défense"
+    },
+    "agent_protection": {
+      "display_name": "Agent de Protection",
+      "sector": "securite",
+      "qualification": 2,
+      "display_sector": "Sécurité & Défense"
+    },
+    "detective": {
+      "display_name": "Détective",
+      "sector": "securite",
+      "qualification": 3,
+      "display_sector": "Sécurité & Défense"
+    },
+    "officier_police": {
+      "display_name": "Officier de Police",
+      "sector": "securite",
+      "qualification": 4,
+      "display_sector": "Sécurité & Défense"
+    },
+    "officier_armee": {
+      "display_name": "Officier de l'Armée",
+      "sector": "securite",
+      "qualification": 4,
+      "display_sector": "Sécurité & Défense"
+    },
+    "pompier": {
+      "display_name": "Pompier",
+      "sector": "securite",
+      "qualification": 2,
+      "display_sector": "Sécurité & Défense"
+    },
+    "secouriste": {
+      "display_name": "Secouriste",
+      "sector": "securite",
+      "qualification": 2,
+      "display_sector": "Sécurité & Défense"
+    },
+    "garde_corps": {
+      "display_name": "Garde du Corps",
+      "sector": "securite",
+      "qualification": 1,
+      "display_sector": "Sécurité & Défense"
+    },
+    "agent_rapproche": {
+      "display_name": "Agent Rapproché",
+      "sector": "securite",
+      "qualification": 2,
+      "display_sector": "Sécurité & Défense"
+    },
+    "cuisinier": {
+      "display_name": "Cuisinier",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "chef_cuisinier": {
+      "display_name": "Chef Cuisinier",
+      "sector": "hotellerie",
+      "qualification": 3,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "serveur": {
+      "display_name": "Serveur",
+      "sector": "hotellerie",
+      "qualification": 1,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "barman": {
+      "display_name": "Barman",
+      "sector": "hotellerie",
+      "qualification": 1,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "receptionniste": {
+      "display_name": "Réceptionniste",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "gouvernante": {
+      "display_name": "Gouvernante",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "concierge": {
+      "display_name": "Concierge",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "guide_touristique": {
+      "display_name": "Guide Touristique",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "agent_voyage": {
+      "display_name": "Agent de Voyage",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "hotelier": {
+      "display_name": "Hôtelier",
+      "sector": "hotellerie",
+      "qualification": 3,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "responsable_restaurant": {
+      "display_name": "Responsable Restaurant",
+      "sector": "hotellerie",
+      "qualification": 3,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "traiteur": {
+      "display_name": "Traiteur",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "boulanger_patissier": {
+      "display_name": "Boulanger-Pâtissier",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "glacier": {
+      "display_name": "Glacier",
+      "sector": "hotellerie",
+      "qualification": 2,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "sommelier": {
+      "display_name": "Sommelier",
+      "sector": "hotellerie",
+      "qualification": 3,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "femme_menage": {
+      "display_name": "Femme de Ménage",
+      "sector": "hotellerie",
+      "qualification": 1,
+      "display_sector": "Hôtellerie & Restauration"
+    },
+    "tailleur": {
+      "display_name": "Tailleur",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "couturier": {
+      "display_name": "Couturier",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "cordonnier": {
+      "display_name": "Cordonnier",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "coiffeur": {
+      "display_name": "Coiffeur",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "estheticien": {
+      "display_name": "Esthéticien",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "maquilleur": {
+      "display_name": "Maquilleur",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "tisserand": {
+      "display_name": "Tisserand",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "sculpteur": {
+      "display_name": "Sculpteur",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "forgeron": {
+      "display_name": "Forgeron",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "menuisier_ebeniste": {
+      "display_name": "Menuisier Ébéniste",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "ceramiste": {
+      "display_name": "Céramiste",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "orfevre": {
+      "display_name": "Orfèvre",
+      "sector": "artisanat",
+      "qualification": 3,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "joaillier": {
+      "display_name": "Joaillier",
+      "sector": "artisanat",
+      "qualification": 3,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "imprimeur": {
+      "display_name": "Imprimeur",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "serigraphe": {
+      "display_name": "Sérigraphe",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "reparateur_electronique": {
+      "display_name": "Réparateur Électronique",
+      "sector": "artisanat",
+      "qualification": 2,
+      "display_sector": "Artisanat & Industrie Légère"
+    },
+    "journaliste": {
+      "display_name": "Journaliste",
+      "sector": "media",
+      "qualification": 3,
+      "display_sector": "Média & Communication"
+    },
+    "reporter": {
+      "display_name": "Reporter",
+      "sector": "media",
+      "qualification": 3,
+      "display_sector": "Média & Communication"
+    },
+    "presentateur": {
+      "display_name": "Présentateur",
+      "sector": "media",
+      "qualification": 3,
+      "display_sector": "Média & Communication"
+    },
+    "realisateur": {
+      "display_name": "Réalisateur",
+      "sector": "media",
+      "qualification": 4,
+      "display_sector": "Média & Communication"
+    },
+    "cameraman": {
+      "display_name": "Cameraman",
+      "sector": "media",
+      "qualification": 2,
+      "display_sector": "Média & Communication"
+    },
+    "monteur_video": {
+      "display_name": "Monteur Vidéo",
+      "sector": "media",
+      "qualification": 2,
+      "display_sector": "Média & Communication"
+    },
+    "photographe": {
+      "display_name": "Photographe",
+      "sector": "media",
+      "qualification": 2,
+      "display_sector": "Média & Communication"
+    },
+    "redacteur": {
+      "display_name": "Rédacteur",
+      "sector": "media",
+      "qualification": 3,
+      "display_sector": "Média & Communication"
+    },
+    "charge_communication": {
+      "display_name": "Chargé de Communication",
+      "sector": "media",
+      "qualification": 3,
+      "display_sector": "Média & Communication"
+    },
+    "community_manager_media": {
+      "display_name": "Community Manager",
+      "sector": "media",
+      "qualification": 2,
+      "display_sector": "Média & Communication"
+    },
+    "ingenieur_energie": {
+      "display_name": "Ingénieur Énergie",
+      "sector": "energie",
+      "qualification": 5,
+      "display_sector": "Énergie & Eau"
+    },
+    "technicien_energie": {
+      "display_name": "Technicien Énergie",
+      "sector": "energie",
+      "qualification": 3,
+      "display_sector": "Énergie & Eau"
+    },
+    "electricien_industriel": {
+      "display_name": "Électricien Industriel",
+      "sector": "energie",
+      "qualification": 3,
+      "display_sector": "Énergie & Eau"
+    },
+    "hydraulicien": {
+      "display_name": "Hydraulicien",
+      "sector": "energie",
+      "qualification": 4,
+      "display_sector": "Énergie & Eau"
+    },
+    "technicien_solaire": {
+      "display_name": "Technicien Solaire",
+      "sector": "energie",
+      "qualification": 3,
+      "display_sector": "Énergie & Eau"
+    },
+    "ingenieur_eau": {
+      "display_name": "Ingénieur Eau",
+      "sector": "energie",
+      "qualification": 4,
+      "display_sector": "Énergie & Eau"
+    },
+    "plombier_industriel": {
+      "display_name": "Plombier Industriel",
+      "sector": "energie",
+      "qualification": 3,
+      "display_sector": "Énergie & Eau"
+    },
+    "operateur_centrale": {
+      "display_name": "Opérateur de Centrale",
+      "sector": "energie",
+      "qualification": 3,
+      "display_sector": "Énergie & Eau"
+    },
+    "maintenancier": {
+      "display_name": "Maintenancier",
+      "sector": "energie",
+      "qualification": 2,
+      "display_sector": "Énergie & Eau"
+    },
+    "ingenieur_environnement": {
+      "display_name": "Ingénieur Environnement",
+      "sector": "environnement",
+      "qualification": 4,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "ecologiste": {
+      "display_name": "Écologiste",
+      "sector": "environnement",
+      "qualification": 4,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "forestier": {
+      "display_name": "Forestier",
+      "sector": "environnement",
+      "qualification": 3,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "garde_forestier": {
+      "display_name": "Garde Forestier",
+      "sector": "environnement",
+      "qualification": 2,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "gestionnaire_dechets": {
+      "display_name": "Gestionnaire de Déchets",
+      "sector": "environnement",
+      "qualification": 2,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "climatologue": {
+      "display_name": "Climatologue",
+      "sector": "environnement",
+      "qualification": 5,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "agroforestier": {
+      "display_name": "Agroforestier",
+      "sector": "environnement",
+      "qualification": 3,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "biologiste": {
+      "display_name": "Biologiste",
+      "sector": "environnement",
+      "qualification": 4,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "chimiste_environnement": {
+      "display_name": "Chimiste Environnement",
+      "sector": "environnement",
+      "qualification": 4,
+      "display_sector": "Environnement & Développement Durable"
+    },
+    "musicien": {
+      "display_name": "Musicien",
+      "sector": "culture",
+      "qualification": 2,
+      "display_sector": "Culture & Arts"
+    },
+    "artiste_peintre": {
+      "display_name": "Artiste Peintre",
+      "sector": "culture",
+      "qualification": 2,
+      "display_sector": "Culture & Arts"
+    },
+    "danseur": {
+      "display_name": "Danseur",
+      "sector": "culture",
+      "qualification": 2,
+      "display_sector": "Culture & Arts"
+    },
+    "acteur": {
+      "display_name": "Acteur",
+      "sector": "culture",
+      "qualification": 2,
+      "display_sector": "Culture & Arts"
+    },
+    "ecrivain": {
+      "display_name": "Écrivain",
+      "sector": "culture",
+      "qualification": 3,
+      "display_sector": "Culture & Arts"
+    },
+    "traducteur": {
+      "display_name": "Traducteur",
+      "sector": "culture",
+      "qualification": 3,
+      "display_sector": "Culture & Arts"
+    },
+    "conservateur": {
+      "display_name": "Conservateur",
+      "sector": "culture",
+      "qualification": 3,
+      "display_sector": "Culture & Arts"
+    },
+    "bibliothecaire_culture": {
+      "display_name": "Bibliothécaire Culture",
+      "sector": "culture",
+      "qualification": 2,
+      "display_sector": "Culture & Arts"
+    },
+    "entraineur": {
+      "display_name": "Entraîneur",
+      "sector": "sport",
+      "qualification": 3,
+      "display_sector": "Sport & Loisirs"
+    },
+    "athlete": {
+      "display_name": "Athlète",
+      "sector": "sport",
+      "qualification": 2,
+      "display_sector": "Sport & Loisirs"
+    },
+    "arbitre": {
+      "display_name": "Arbitre",
+      "sector": "sport",
+      "qualification": 2,
+      "display_sector": "Sport & Loisirs"
+    },
+    "preparateur_physique": {
+      "display_name": "Préparateur Physique",
+      "sector": "sport",
+      "qualification": 3,
+      "display_sector": "Sport & Loisirs"
+    },
+    "gestionnaire_sportif": {
+      "display_name": "Gestionnaire Sportif",
+      "sector": "sport",
+      "qualification": 3,
+      "display_sector": "Sport & Loisirs"
+    },
+    "moniteur_sport": {
+      "display_name": "Moniteur Sportif",
+      "sector": "sport",
+      "qualification": 2,
+      "display_sector": "Sport & Loisirs"
+    }
+  }
+}

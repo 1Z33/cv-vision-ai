@@ -144,7 +144,8 @@ class InterviewAI:
             "question_text": text,
             "question_type": q_type,
             "expected_keywords": template["keywords"],
-            "difficulty": difficulty
+            "difficulty": difficulty,
+            "source": "local"
         }
     
     def evaluate_answer(self, question: Dict[str, Any], answer: str) -> Dict[str, Any]:
