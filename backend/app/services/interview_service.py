@@ -354,7 +354,7 @@ Réponds en JSON:
             if self.engine.gemini and self.engine.gemini.enabled:
                 response = await asyncio.to_thread(
                     self.engine.gemini.client.models.generate_content,
-                    model="gemini-2.0-flash",
+                    model="gemini-1.5-flash-8b",
                     contents=prompt,
                 )
                 text = getattr(response, "text", "{}") or "{}"
@@ -454,7 +454,7 @@ Réponds en JSON:
 
                 response = await asyncio.to_thread(
                     gemini_client.client.models.generate_content,
-                    model="gemini-2.0-flash",
+model="gemini-1.5-flash-8b",
                     contents=prompt,
                 )
 

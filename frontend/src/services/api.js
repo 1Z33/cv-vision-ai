@@ -1,11 +1,16 @@
 import axios from 'axios'
 
+const apiBase = import.meta.env.VITE_API_URL || '/api';
+
 const api = axios.create({
-  baseURL: '/api/v1',
+  // VITE_API_URL est typiquement .../_/backend/api
+  // En dev, le proxy Vite s'occupe de /api
+  baseURL: `${apiBase}/v1`,
   headers: {
     'Content-Type': 'application/json',
   },
 })
+
 
 // Intercepteur pour ajouter le token
 api.interceptors.request.use((config) => {

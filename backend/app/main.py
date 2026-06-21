@@ -44,12 +44,13 @@ app = FastAPI(
 
 # CORS - Configuration pour développement et production
 # En développement: localhost:5173 et localhost:3000
-# En production: remplacer par le domaine réel du frontend
+# En production: domaine réel du frontend (Render)
 allowed_origins = [
     "http://localhost:5173",  # Vite dev
-    "http://localhost:3000",  # React dev
-    # "https://your-frontend-domain.com",  # Uncomment for production
+    "https://cv-vision-ai-8.onrender.com",  # Frontend Render (production)
 ]
+
+
 
 app.add_middleware(
     CORSMiddleware,

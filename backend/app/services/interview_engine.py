@@ -128,8 +128,8 @@ Contraintes:
 
                     def call_gemini() -> Optional[Dict[str, Any]]:
                         response = self.gemini.client.models.generate_content(
-                            model="gemini-2.0-flash",
-                            contents=prompt,
+model="gemini-1.5-flash-8b",
+                    contents=prompt,
                             config=genai_types.GenerateContentConfig(
                                 temperature=0.7,
                                 max_output_tokens=220,
@@ -238,7 +238,7 @@ Contraintes:
                 from google.genai import types as genai_types
 
                 response = self.gemini.client.models.generate_content(
-                    model="gemini-2.0-flash",
+                    model="gemini-1.5-flash-8b",
                     contents=prompt,
                     config=genai_types.GenerateContentConfig(
                         temperature=0.7,
@@ -330,7 +330,7 @@ Retourne UNIQUEMENT ce JSON valide (pas de texte autour) :
             from google.genai import types as genai_types
 
             response = self.gemini.client.models.generate_content(
-                model="gemini-2.0-flash",
+model="gemini-1.5-flash-8b",
                 contents=prompt,
                 config=genai_types.GenerateContentConfig(
                     temperature=0.3,

@@ -102,8 +102,12 @@ export function useVocalInterview() {
     setState(prev => ({ ...prev, isLoading: true, error: null }));
 
     try {
-      const res = await fetch(`/api/v1/interviews/${sessionId}/vocal-start`, {
+const apiBase = import.meta.env.VITE_API_URL || '/api';
+      const res = await fetch(`${apiBase}/v1/interviews/${sessionId}/vocal-start`, {
+
+
         method: 'POST',
+
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token') || ''}`,
         },
@@ -213,9 +217,11 @@ export function useVocalInterview() {
           text: text.substring(0, 50),
         });
 
+        const apiBase = import.meta.env.VITE_API_URL || '/api';
         const response = await fetch(
-          `/api/v1/interviews/${sessionId}/vocal-answer`,
+          `${apiBase}/v1/interviews/${sessionId}/vocal-answer`,
           {
+
             method: 'POST',
             headers: {
               Authorization: `Bearer ${localStorage.getItem('access_token') || ''}`,

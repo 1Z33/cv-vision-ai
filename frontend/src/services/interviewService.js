@@ -6,6 +6,7 @@ export const interviewService = {
     return response.data
   },
 
+
   async submitAnswer(sessionId, answer) {
     const response = await api.post(`/interviews/${sessionId}/answer`, { answer })
     return response.data
