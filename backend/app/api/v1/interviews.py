@@ -195,7 +195,10 @@ async def start_vocal_interview(
     db: AsyncSession = Depends(get_db),
 ):
 
-    """Démarre un entretien vocal. Génère la première question."""
+    """Démarre un entretien vocal.
+
+    Idempotent: si des questions existent déjà, on renvoie/génère la prochaine question à jouer.
+    """
     from uuid import UUID
 
     try:
@@ -206,14 +209,23 @@ async def start_vocal_interview(
     InterviewSessionModel = __import__("app.models.interview", fromlist=["InterviewSession"]).InterviewSession
     session = await db.get(InterviewSessionModel, session_uuid)
 
-
     if not session:
         raise HTTPException(status_code=404, detail="Session non trouvée")
-
 
     if str(session.user_id) != str(current_user.id):
         raise HTTPException(status_code=403, detail="Accès non autorisé")
 
+    from app.models.interview import InterviewQA
+
+    # Prochaine question à générer = (nombre de QA répondues) + 1
+    answered_count_result = await db.execute(
+        __import__("sqlalchemy", fromlist=["select"]).select(__import__("sqlalchemy", fromlist=["func"]).func.count(InterviewQA.id)).where(
+            InterviewQA.session_id == session_uuid,
+            InterviewQA.user_answer.isnot(None),
+        )
+    )
+    answered_count = answered_count_result.scalar() or 0
+    next_number = answered_count + 1
 
     cv_text = ""
     if session.cv_id:
@@ -224,59 +236,60 @@ async def start_vocal_interview(
             cv_text = cv.extracted_text or ""
 
     service = InterviewService(db)
-    try:
-        question_data = await service.generate_vocal_question(
-            session_id=session_id,
 
-            cv_text=cv_text,
-            job_title=session.job_title,
-            difficulty=session.difficulty,
-            question_number=1,
-            db=db,
-        )
-    except Exception as e:
-        logger.error(f"Erreur génération question vocale: {e}")
-        question_data = {
-            "question_text": f"Parlez-moi de vous et de votre expérience pour le poste de {session.job_title}.",
-            "question_type": "behavioral",
-            "expected_keywords": ["expérience", "motivation"],
-        }
-
-    from app.models.interview import InterviewQA
-    import uuid
-
-    # Évite la création multiple de QA lors d'appels répétés de /vocal-start
-    session_uuid = UUID(session_id)
-    existing_qa = await db.execute(
+    # Si la QA pour next_number existe déjà, on la réutilise (évite doublons)
+    existing_qa_result = await db.execute(
         __import__("sqlalchemy", fromlist=["select"]).select(InterviewQA).where(
             InterviewQA.session_id == session_uuid,
-            InterviewQA.question_number == 1,
+            InterviewQA.question_number == next_number,
         )
     )
-    existing_qa_obj = existing_qa.scalars().first()
+    existing_qa_obj = existing_qa_result.scalars().first()
 
-    if existing_qa_obj:
-        # Réutilise la question déjà stockée (et on ne la duplique pas)
-        # Si elle n'a pas de texte (cas rare), on la complète.
-        if not existing_qa_obj.question_text:
-            existing_qa_obj.question_text = question_data["question_text"]
-        if not existing_qa_obj.question_type:
-            existing_qa_obj.question_type = question_data.get("question_type", "behavioral")
-        if not existing_qa_obj.expected_keywords:
-            existing_qa_obj.expected_keywords = question_data.get("expected_keywords", [])
-        await db.commit()
+    question_data: dict
+    if existing_qa_obj and existing_qa_obj.question_text:
+        question_data = {
+            "question_text": existing_qa_obj.question_text,
+            "question_type": existing_qa_obj.question_type,
+            "expected_keywords": existing_qa_obj.expected_keywords or [],
+        }
     else:
-        qa = InterviewQA(
-            id=uuid.uuid4(),
-            session_id=session_uuid,
-            question_number=1,
-            question_text=question_data["question_text"],
-            question_type=question_data.get("question_type", "behavioral"),
-            expected_keywords=question_data.get("expected_keywords", []),
-        )
-        db.add(qa)
-        await db.commit()
+        try:
+            question_data = await service.generate_vocal_question(
+                session_id=session_id,
+                cv_text=cv_text,
+                job_title=session.job_title,
+                difficulty=session.difficulty,
+                question_number=next_number,
+                db=db,
+            )
+        except Exception as e:
+            logger.error(f"Erreur génération question vocale: {e}")
+            question_data = {
+                "question_text": f"Parlez-moi de vous et de votre expérience pour le poste de {session.job_title}.",
+                "question_type": "behavioral",
+                "expected_keywords": ["expérience", "motivation"],
+            }
 
+        # Persist QA next_number
+        import uuid
+        if existing_qa_obj:
+            existing_qa_obj.question_text = question_data["question_text"]
+            existing_qa_obj.question_type = question_data.get("question_type", existing_qa_obj.question_type)
+            if not existing_qa_obj.expected_keywords:
+                existing_qa_obj.expected_keywords = question_data.get("expected_keywords", [])
+            await db.commit()
+        else:
+            qa = InterviewQA(
+                id=uuid.uuid4(),
+                session_id=session_uuid,
+                question_number=next_number,
+                question_text=question_data["question_text"],
+                question_type=question_data.get("question_type", "behavioral"),
+                expected_keywords=question_data.get("expected_keywords", []),
+            )
+            db.add(qa)
+            await db.commit()
 
     # Générer l'audio de la question (TTS)
     from app.services.vocal_service import VocalService
@@ -288,10 +301,11 @@ async def start_vocal_interview(
         "session_id": session_id,
         "question_text": question_data["question_text"],
         "question_audio_url": question_audio_url,
-        "question_number": 1,
+        "question_number": next_number,
         "total_questions": 5,
         "is_complete": False,
     }
+
 
 
 
@@ -564,16 +578,34 @@ async def process_vocal_answer(
     feedback_audio_url = await vocal_service.text_to_speech(evaluation.get("feedback", "")) if evaluation.get("feedback") else None
     next_question_audio_url = await vocal_service.text_to_speech(next_q["question_text"]) if next_q.get("question_text") else None
 
-    new_qa = InterviewQA(
-        id=uuid.uuid4(),
-        session_id=session_uuid,
-        question_number=next_number,
-        question_text=next_q["question_text"],
-        question_type=next_q.get("question_type", "behavioral"),
-        expected_keywords=next_q.get("expected_keywords", []),
+    # Idempotence: si une QA existe déjà pour (session_uuid, next_number), on la met à jour.
+    existing_next_result = await db.execute(
+        __import__("sqlalchemy", fromlist=["select"]).select(InterviewQA).where(
+            InterviewQA.session_id == session_uuid,
+            InterviewQA.question_number == next_number,
+        )
     )
-    db.add(new_qa)
+    existing_next_qa = existing_next_result.scalars().first()
+
+    if existing_next_qa:
+        existing_next_qa.question_text = next_q["question_text"]
+        existing_next_qa.question_type = next_q.get("question_type", existing_next_qa.question_type)
+        if not existing_next_qa.expected_keywords:
+            existing_next_qa.expected_keywords = next_q.get("expected_keywords", [])
+        db.add(existing_next_qa)
+    else:
+        new_qa = InterviewQA(
+            id=uuid.uuid4(),
+            session_id=session_uuid,
+            question_number=next_number,
+            question_text=next_q["question_text"],
+            question_type=next_q.get("question_type", "behavioral"),
+            expected_keywords=next_q.get("expected_keywords", []),
+        )
+        db.add(new_qa)
+
     await db.commit()
+
 
 
     return {

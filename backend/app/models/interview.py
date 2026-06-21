@@ -5,7 +5,8 @@ Modèles SQLAlchemy : Sessions d'entretien et Questions/Réponses
 import uuid
 from datetime import datetime, timezone
 import secrets
-from sqlalchemy import Column, String, Text, Integer, ForeignKey, DateTime, JSON, Boolean
+from sqlalchemy import Column, String, Text, Integer, ForeignKey, DateTime, JSON, Boolean, UniqueConstraint
+
 from sqlalchemy.dialects.postgresql import UUID
 
 from sqlalchemy.orm import relationship
@@ -48,13 +49,16 @@ class InterviewQA(Base):
     session_id = Column(UUID(as_uuid=True), ForeignKey("interview_sessions.id", ondelete="CASCADE"), nullable=False, index=True)
     question_number = Column(Integer, nullable=False)
 
+    # Empêche d’avoir plusieurs lignes pour la même question dans une même session.
     __table_args__ = (
-        # Empêche d’avoir plusieurs lignes pour la même question dans une même session
-        # (prévention des doublons et états incohérents).
-        # À appliquer via migration Alembic/SQL selon la DB.
-        # (Contraintes réellement effectives après migration.)
-        {},
+        UniqueConstraint(
+            "session_id",
+            "question_number",
+            name="uq_interviewqa_session_qnum",
+        ),
     )
+
+
     
     question_text = Column(Text, nullable=False)
     question_type = Column(String(50))  # technical, behavioral, situational

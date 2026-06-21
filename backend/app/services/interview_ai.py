@@ -117,23 +117,29 @@ class InterviewAI:
         
         text = template["text"]
         
-        # Personnaliser avec les skills si disponibles
-        if "{skill}" in text and skills:
-            skill = random.choice(skills)
-            text = text.replace("{skill}", skill.title())
-            
-            # Remplacer les placeholders secondaires
-            if "{alt_skill}" in text:
-                alt = random.choice([s for s in skills if s != skill] or ["une alternative"])
-                text = text.replace("{alt_skill}", alt.title())
-            
-            if "{concept}" in text:
-                concepts = ["l'architecture", "les patterns", "l'optimisation", "la sécurité"]
-                text = text.replace("{concept}", random.choice(concepts))
-            
-            if "{scenario}" in text:
-                scenarios = ["un trafic élevé", "des données sensibles", "une équipe distribuée"]
-                text = text.replace("{scenario}", random.choice(scenarios))
+        # Personnaliser avec les skills.
+        # Important: ne pas laisser des placeholders non remplacés si `skills` est vide.
+        if "{skill}" in text:
+            skill = random.choice(skills) if skills else "votre compétence"
+            text = text.replace("{skill}", str(skill).title())
+
+        if "{alt_skill}" in text:
+            if skills and "{skill}" in template["text"]:
+                # alt ≠ skill (si possible)
+                base_skill = random.choice(skills)
+                alt = random.choice([s for s in skills if s != base_skill] or ["une alternative"])
+            else:
+                alt = "une alternative"
+            text = text.replace("{alt_skill}", str(alt).title())
+
+        if "{concept}" in text:
+            concepts = ["l'architecture", "les patterns", "l'optimisation", "la sécurité"]
+            text = text.replace("{concept}", random.choice(concepts))
+
+        if "{scenario}" in text:
+            scenarios = ["un trafic élevé", "des données sensibles", "une équipe distribuée"]
+            text = text.replace("{scenario}", random.choice(scenarios))
+
         
         # Ajouter le contexte du poste
         if job_title and random.random() > 0.5:
